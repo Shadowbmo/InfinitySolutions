@@ -1,0 +1,28 @@
+Devemos primeiramente checar se estamos em main, caso estivermos devemos mudar para QA
+
+Ultilizando o comando "git checkout QA"
+
+
+Caso já estamos em QA podemos mexer a vontade em quaisquer alteração.
+Após a finalização das tarefas temos que criar uma nova branch
+
+Ultilizando o comando "Git checkout -B "nomeDaBranch"
+
+
+Regras referente a nomenclatura e criação da Branch:
+
+1 - não ultilize espaço
+2 - não ultilize traços
+3 - não repita nomes na criação de uma nova branch
+4 - a parte do -B tem que ser em maisculo obrigatoriamente
+
+
+Logo após inicie o processo normalmente de um push normal
+
+Ultilizando "git add "
+
+Ultilizando "git commit -m ' Texto do commit ' "
+
+Quando chegar na parte do push é nescessario dar o push na branch correta então 
+
+Ultilizamos o " Git push origin 'nomeDaBranch' "
