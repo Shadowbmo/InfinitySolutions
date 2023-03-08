@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Funcionário</title>
+
+    <!-- Linkando O  CSS da tela de dashboard (grafico)-->
+    <link rel="stylesheet" href="./css/estilo_Tela_Inicial_Do_Grafico.css">
+
+    <link rel="stylesheet" href="./css/cadastro_funcionario.css">
+
+    <!-- linkando os icones-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="shortcut icon" href="./assets/img/favicon-32x32.png" type="image/x-icon" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="shortcut icon" href="./assets/img/favicon-32x32.png" type="image/x-icon" />
+</head>
+
+<body onload="atualizarFuncionario()">
+
+    <!-- Div container do grafico e da navegação -->
+    <div class="containerGrafico">
+        <!-- Div que contem a parte de navegação (parte verde do menu)-->
+        <div class="navegacao">
+            <ul>
+                <li>
+                    <!-- Foto De Perfil do USUARIO e o NOME do mesmo -->
+                    <div class="fotoDePerfil">
+                        <a href="#">
+
+                            <!-- imagem do ICONE DA FOTO DE PERFIL-->
+                            <span class="icone"><i class="uil uil-user"></i> </span>
+                            <span class="titulo"><span id="b_usuario">usuário</span></span>
+
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="./tela_Inicial_Do_Grafico.html">
+
+                        <!-- Imagem do ICONE DO planos-->
+                        <span class="icone"> <i class="uil uil-home"></i> </span>
+                        <span class="titulo"> Início </span>
+
+                    </a>
+                </li>
+                <li onclick="Adicionar()" id="adicionar2">
+                    <a href="#">
+
+                        <!--Imagem do ICONE DE ADICIONAR -->
+                        <span class="icone"> <i class="uil uil-plus"></i> </span>
+                        <span class="titulo"> Adicionar</span>
+                        <span class="icone2"><i class="uil uil-angle-down"></i></span>
+
+                    </a>
+                </li>
+                <div class="adicionar" id="adicionar3">
+
+                    <li>
+                        <a href="./cadastro_armazem.html">
+
+                            <!--Imagem do ICONE DE ADICIONAR -->
+                            <span class="icone"> <i class="uil uil-estate"></i> </span>
+                            <span class="titulo"> Adicionar Armazem</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./cadastro_empresa.html">
+
+                            <!--Imagem do ICONE DE ADICIONAR -->
+                            <span class="icone"> <i class="uil uil-building"></i></span>
+                            <span class="titulo"> Adicionar Empresa</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./cadastro_funcionario.html">
+
+                            <!--Imagem do ICONE DE ADICIONAR -->
+                            <span class="icone"> <i class="uil uil-user-plus"></i> </span>
+                            <span class="titulo"> Adicionar Responsável</span>
+
+                        </a>
+                    </li>
+                </div>
+                <li>
+                    <a href="./configuracoes.html">
+
+                        <!-- Imagem do ICONE DE CONFIGURAÇÕES -->
+                        <span class="icone"><i class="uil uil-cog"></i></span>
+                        <span class="titulo"> Configurações</span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="http://suporteMelvs.auvo.com.br">
+
+                        <!-- Imagem do ICONE DE SUPORTE -->
+                        <span class="icone"><i class="uil uil-comment-question"></i>
+                        </span>
+                        <span class="titulo"> Suporte</span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="Modo" onclick="ModoClaro()">
+
+                        <!-- Dark Mode -->
+                        <span class="icone"><i class="uil uil-moon"></i> </span>
+                        <span id="ModoEscuro" class="Modo"> Modo Escuro </span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="./index.html">
+
+                        <!-- Botão de Sair  -->
+                        <span class="icone"><i class="uil uil-signout"></i> </span>
+                        <span class="titulo"> Sair </span>
+
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</body>
+
+<!-- **************************************************************************************** -->
+
+<!--Menu-->
+
+<div class="menu">
+
+    <!-- Parte de Cima que contem A logo de Melvs e O botão de ocutar o menu-->
+    <div class="barra-de-cima">
+
+        <!-- Div Que tem o icone de Menu-->
+        <div class="toggle">
+
+            <!-- Imagem do ICONE DE MENU -->
+            <i class="uil uil-list-ul"></i>
+
+        </div>
+
+        <!-- Div que contem A LOGO DA MELVIS -->
+        <div>
+            <!-- Imagem da logo da MELVS VERDE -->
+            <img src="./assets/img/melvs_logo.png" alt="">
+
+        </div>
+
+        <div>
+
+        </div>
+
+    </div>
+
+
+    <!-- **************************************************************************************** -->
+    <div class="add_funcionario">
+        <div class="lista_funcionario">
+            <h1 class="titulo_funcionario">Funcionários</h1>
+            <dialog class="dialogzinho">
+
+                <div class="dialog">
+                    <div class="header">
+                        <i class="uil uil-times-circle" onclick='fechar()'></i>
+                        <div class="alinhamento">
+                            <span>Infinity Solutions</span>
+                            <img src="./assets/img/Monitoring Solution (500 × 250 px).svg">
+                        </div>
+                        <i></i>
+                    </div>
+                    <div id="form" class="form">
+                        <div class="containerInput">
+                            <input class="input margin" placeholder="Nome" id="input_nome_funcionario">
+                        </div>
+                        <div class="containerInput">
+                            <input class="input margin" placeholder="Email" id="input_email_funcionario">
+                        </div>
+                        <div class="containerInput">
+                            <input class="input margin" type="password" placeholder="Senha"
+                                id="input_senha_funcionario"> <br>
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="containerInput">
+                            <input class="input margin" placeholder="CPF" id="input_cpf_funcionario" maxlength="11"
+                                onkeyup="cpfPontos()"> <br>
+                        </div>
+                        <div class="containerInput">
+                            <input class="input margin" placeholder="CNPJ" id="input_cnpj_funcionario"
+                                onkeyup="cnpjPontos()" maxlength="14">
+                        </div>
+                        <div class="containerInput">
+                            <select class="input margin" id="input_tipo_funcionario">
+                                <option value="">Permissão</option>
+                                <option value="2">Gerente</option>
+                                <option value="3">Analista</option>
+                            </select>
+                        </div><!-- Container input-->
+                        <button onclick="cadastrarUsuario()">Adicionar Funcionário</button>
+                    </div> <!-- formulario -->
+                </div> <!-- div - menu -->
+            </dialog>
+
+        </div>
+    </div>
+
+    <div class="listaConteudo">
+        <div class="cadastrar">
+            <button onclick="modal()"><i class="uil uil-user-plus"></i> Cadastrar Funcionario</button>
+        </div>
+        <ul id="listaEmpresa">
+        </ul>
+    </div>
+</div>
+
+
+</html>
+
+<!-- SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  -->
+
+
+<!-- MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU  -->
+<script>
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    function limparFormulario() {
+        document.getElementById("form_postagem").reset();
+    }
+
+    var idUsuario = sessionStorage.ID_USUARIO
+    function cadastrarUsuario() {
+        var dadosInput = {
+            nome: input_nome_funcionario.value,
+            email: input_email_funcionario.value,
+            tipo: input_tipo_funcionario.value,
+            cpf: input_cpf_funcionario.value,
+            senha: input_senha_funcionario.value,
+            id: idUsuario
+        }
+
+        fetch(`/avisos/cadastrarUsuario`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dadosInput)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                cadastrarFuncionario()
+
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+
+    }
+
+    function cadastrarFuncionario() {
+
+        var dadosInput = {
+            cnpj: input_cnpj_funcionario.value,
+            cpf: input_cpf_funcionario.value,
+        }
+
+        fetch(`/avisos/cadastrarFuncionario`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dadosInput)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+
+    }
+
+
+    function atualizarFuncionario() {
+        var id = idUsuario;
+        fetch(`/avisos/atualizarFuncionario/${id}`).then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+                        console.log(resposta[i])
+                        listaEmpresa.innerHTML += `
+
+<li>
+<div class="avatar">
+<img src="./assets/icons/user (1).svg" alt="">
+</div>
+<div class="descrisao">
+<span>                   
+Nome: ${publicacao.nome}
+</span>
+<span>
+Email: ${publicacao.email}
+</span>
+<span>
+tipo: ${publicacao.descPerfil}
+</span>
+<span>                   
+CPF: ${publicacao.cpf}
+</span>
+<span>                   
+Empresa: ${publicacao.nomeFantasia}
+</span>
+</div>
+</li>
+`
+                    }
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+</script>
+
+<script>
+    //deixar o menu toggle 
+    let toggle = document.querySelector('.toggle');
+    let navegacao = document.querySelector('.navegacao');
+    let menu = document.querySelector('.menu');
+
+
+    //Criando a função para quando clicar ativar e desativar
+    toggle.onclick = function () {
+        navegacao.classList.toggle('ativar');
+        menu.classList.toggle('ativar');
+    }
+    navegacao.classList.toggle('ativar');
+    menu.classList.toggle('ativar');
+</script>
+
+
+
+<!-- MODO ESCURO  MODO ESCURO  MODO ESCURO  MODO ESCURO  MODO ESCURO  MODO ESCURO  MODO ESCURO -->
+<script>
+    var clique = 1;
+
+
+    // Mudando a frase ao clicar 
+    function ModoClaro() {
+        if (clique >= 13) {
+            clique = 0;
+        }
+        if (clique % 2 == 1) {
+            ModoEscuro.innerHTML = 'Modo Claro'
+            clique += 1;
+
+        } else {
+            ModoEscuro.innerHTML = 'Modo Escuro'
+            clique += 1;
+        }
+    }
+
+    // 
+
+
+    const body = document.querySelector("body");
+    const modoEscuro = body.querySelector(".Modo");
+
+    modoEscuro.addEventListener("click", () => {
+        body.classList.toggle("Escuro");
+    });
+
+</script>
+<!--function para add na lista de empresa-->
+<script>
+    var lista_nome_funcionario = [];
+    var lista_email_funcionario = [];
+    var lista_empresa_funcionario = [];
+    var lista_tipo_funcionario = [];
+
+    function add_funcionario() {
+        var nome_funcionario = input_nome_funcionario.value;
+        var email_funcionario = input_email_funcionario.value;
+        var empresa_funcionario = input_empresa_funcionario.value;
+        var tipo_funcionario = input_tipo_funcionario.value;
+
+        lista_nome_funcionario.push(nome_funcionario);
+        lista_email_funcionario.push(email_funcionario);
+        lista_empresa_funcionario.push(empresa_funcionario);
+        lista_tipo_funcionario.push(tipo_funcionario)
+        div_nome_funcionario.innerHTML = ""
+        div_email_funcionario.innerHTML = ""
+        div_empresa_funcionario.innerHTML = ""
+        div_tipo_funcionario.innerHTML = ""
+
+        for (var contador_funcionario = 0;
+            contador_funcionario < lista_nome_funcionario.length;
+            contador_funcionario++) {
+
+            div_nome_funcionario.innerHTML += `${lista_nome_funcionario[contador_funcionario]} <br>`;
+            div_email_funcionario.innerHTML += `${lista_email_funcionario[contador_funcionario]} <br>`;
+            div_empresa_funcionario.innerHTML += `${lista_empresa_funcionario[contador_funcionario]} <br>`;
+            div_tipo_funcionario.innerHTML += `${lista_tipo_funcionario[contador_funcionario]}<br>`
+        }
+    }
+</script>
+
+<script>
+    var adicionar = 0;
+    function Adicionar() {
+        if (adicionar == 0) {
+            adicionar3.classList = 'adicionar4'
+            adicionar++;
+            adicionar2.innerHTML = `                   
+             <a href="#" >
+
+<!--Imagem do ICONE DE ADICIONAR -->
+<span class="icone"> <i class="uil uil-plus"></i> </span>
+<span class="titulo"> Adicionar</span>
+<span class="icone2"><i class="uil uil-angle-up"></i></span>
+
+</a>`
+
+        } else {
+            adicionar3.classList = 'adicionar'
+            adicionar = 0
+
+            adicionar2.innerHTML = `                   
+             <a href="#" >
+
+<!--Imagem do ICONE DE ADICIONAR -->
+<span class="icone"> <i class="uil uil-plus"></i> </span>
+<span class="titulo"> Adicionar</span>
+<span class="icone2"><i class="uil uil-angle-down"></i></span>
+
+</a>`
+        }
+    }
+
+    function cnpjPontos() {
+        var cnpjz = input_cnpj_funcionario.value;
+        var Digito1 = cnpjz[0]
+        var Digito2 = cnpjz[1]
+        var Digito3 = cnpjz[2]
+        var Digito4 = cnpjz[3]
+        var Digito5 = cnpjz[4]
+        var Digito6 = cnpjz[5]
+        var Digito7 = cnpjz[6]
+        var Digito8 = cnpjz[7]
+        var Digito13 = cnpjz[12]
+        var Digito14 = cnpjz[13]
+        var cnpjInteiro = `${Digito1}${Digito2}.${Digito3}${Digito4}${Digito5}.${Digito6}${Digito7}${Digito8}/0001-${Digito13}${Digito14}`
+        if (cnpjz.length == 14) {
+            input_cnpj_funcionario.value = `${cnpjInteiro}`
+        }
+
+    }
+    function cpfPontos() {
+        var cpfz = input_cpf_funcionario.value;
+        var Digito1 = cpfz[0]
+        var Digito2 = cpfz[1]
+        var Digito3 = cpfz[2]
+        var Digito4 = cpfz[3]
+        var Digito5 = cpfz[4]
+        var Digito6 = cpfz[5]
+        var Digito7 = cpfz[6]
+        var Digito8 = cpfz[7]
+        var Digito9 = cpfz[8]
+        var Digito10 = cpfz[9]
+        var Digito11 = cpfz[10]
+        var cpfInteiro = `${Digito1}${Digito2}${Digito3}.${Digito4}${Digito5}${Digito6}.${Digito7}${Digito8}${Digito9}-${Digito10}${Digito11}`
+        if (cpfz.length == 11) {
+            input_cpf_funcionario.value = `${cpfInteiro}`
+        }
+
+    }
+</script>
+<script>
+
+    var modalzinho = document.querySelector("dialog")
+    function modal() {
+        modalzinho.showModal()
+        modalzinho.classList = 'dialogzinho2'
+    }
+
+    function fechar() {
+        modalzinho.close()
+        modalzinho.classList = 'dialogzinho'
+
+    }
+</script>
