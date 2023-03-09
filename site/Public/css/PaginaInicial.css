@@ -1,0 +1,176 @@
+
+
+.card {
+    box-shadow: 0 7px 25px var(--Sombra);
+    background: var(--BrancoMelvs);
+    border-radius: 20px;
+    position: relative;
+    margin: 20px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--VerdeEscuro);
+}
+
+
+
+.card .conteudo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    position: relative;
+}
+
+.card .icones i {
+    color: var(--TextoVerdeEscuro);
+    opacity: 0.5;
+    cursor: pointer;
+    position: relative;
+
+}
+
+.card .nome-do-armazem-e-sua-descrisao {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    color: var(--TextoVerdeEscuro);
+}
+
+.nome-do-armazem-e-sua-descrisao .nome-do-armazem {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.nome-do-armazem-e-sua-descrisao .descrisao-do-armazem {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.card .status-armazem {
+    color: var(--ok);
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+}
+
+.card .status-armazem1 {
+    color: var(--critico);
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+    font-size: 15px;
+}
+
+.card .status-armazem2 {
+    color: var(--atencao);
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+    font-size: 15px;
+}
+
+.nome-do-armazem-e-sua-descrisao i {
+    color: var(--TextoVerdeClaro);
+    opacity: 0.6;
+}
+
+.card .botao {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    position: relative;
+
+}
+
+
+.card .botao button {
+    color: var(--TextoVerdeEscuro);
+    background-color: var(--Botao);
+    border: none;
+    padding: 8px 22px;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    border: 1px solid var(--VerdeEscuro);
+}
+
+
+/************************************************************************************************************ */
+
+/* dando opacidade para quando o mouser passar por cima  */
+/* dando opacidade para os icones de Email/Telefone/Chat  */
+.card .icones i:hover {
+    opacity: 1;
+}
+
+/* dando opacidade para quando o icone do I informativo */
+.nome-do-armazem-e-sua-descrisao i:hover {
+    opacity: 1;
+}
+
+/* dando opacidade para quando o botão */
+.botao button:hover {
+    opacity: 0.6;
+}
+
+.botao1 button:hover {
+    opacity: 0.6;
+}
+
+
+.body {
+    height: 70%;
+    display: flex;
+    background-color: var(--BrancoMelvs);
+    position: relative;
+    margin: 15px;
+}
+
+
+
+/* comandos no section (prescisa ser alterado pela div) */
+/* Aqui está deixando redondo aquela parte que fica a imagem */
+section .card .imagem {
+    height: 140px;
+    width: 140px;
+    border-radius: 20px;
+    padding: 3px;
+    position: relative;
+
+}
+
+
+section .card .imagem img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    padding: 3px;
+   
+    border: 3px solid var(--VerdeEscuro);
+    position: relative;
+
+}
+
+
+.container {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    background-color: var(--BrancoMelvs);
+}
+
+
+
+
+section{
+    background-color: var(--BrancoMelvs);
+}
+
+.container {
+    background-color: var(--BrancoMelvs);
+}

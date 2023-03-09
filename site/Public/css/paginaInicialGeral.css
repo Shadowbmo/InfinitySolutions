@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    --brancopuro: #FFF;
+    --BrancoMelvs: #eff0e8d5;
+    --VerdeClaro: #11C76F;
+    --HoverMenu: rgba(23, 233, 132, 0.701);
+    --TextoPreto: #000;
+    --TextoVerdeEscuro: #ebe4e4;
+    --VerdeEscuro: #054A29;
+    --FundoGrafico: #eff0e8d5;
+    --Sombra: rgba(0, 0, 0, 0.08);
+    --TextoVerdeClaro: #11C76F;
+    --Botao: #D9D9D9;
+    --critico: #ff0000;
+    --ok: #11C76F;
+    --atencao:  #bbb502;
+    --adicionar: #D4FADE;
+    --BackgroundLinear: linear-gradient(to bottom, #00ef7e, #006986, #01118a);
+}
+
+.bodyHeader {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--BrancoMelvs);
+}
+
+body.Escuro {
+    --BrancoMelvs: #3A3B3C;
+    --VerdeClaro: #242526;
+    --HoverMenu: #4D4C4C;
+    --TextoPreto: #CCC;
+    --TextoVerdeEscuro: #CCC;
+    --VerdeEscuro: #3A4A40;
+    --FundoGrafico: rgba(255, 255, 255, 0.179);
+    --Sombra: rgba(255, 255, 255, 0.179);
+    --brancopuro: #000;
+    --TextoVermelho: #B75E38;
+    --TextoLaranja:#F9F871;
+    --TextoVerdeClaro: #11C76F;
+    --Botao: #697987;
+    --adicionar: #3a3a3a;
+    --BackgroundLinear:#242526 ;
+    ;
+}
+
+i {
+    font-size: 24px;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: var(--TextoVerdeEscuro);
+}
+
+.containerGrafico {
+    position: relative;
+    width: 100%;
+}
+
+.navegacao {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: var(--BackgroundLinear);
+    border-left: 3px solid var(--VerdeClaro);
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.navegacao ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+}
+
+.navegacao ul li {
+    position: relative;
+    width: 100%;
+    border-radius: 30px;
+}
+
+.navegacao ul li .fotoDePerfil {
+    margin-bottom: 40px;
+}
+
+/* hover */
+
+.navegacao ul li:hover {
+    background: var(--HoverMenu);
+}
+
+.caixas .caixa:hover {
+    background: var(--VerdeClaro);
+    opacity: 0.8;
+}
+
+.caixas .caixa:hover .KPI-numeros {
+    color: var(--TextoPreto);
+    font-weight: bold;
+
+}
+
+
+.caixas .caixa:hover .KPI-nome {
+    color: var(--TextoPreto);
+    font-weight: bold;
+}
+
+
+.navegacao ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: var(--TextoVerdeEscuro);
+
+}
+
+.navegacao ul li a .icone {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+
+}
+
+.navegacao ul li a i {
+    font-size: 24px;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: var(--TextoVerdeEscuro);
+}
+
+
+.navegacao ul li a .titulo {
+    position: relative;
+    display: block;
+    padding: 0 10pxs;
+    height: 60px;
+    line-height: 60px;
+}
+
+.navegacao ul li a .Modo {
+    position: relative;
+    display: block;
+    padding: 0 10pxs;
+    height: 60px;
+    line-height: 60px;
+}
+
+
+
+
+.menu {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    transition: 0.5s;
+    background-color: var(--BrancoMelvs);
+    min-height: 100vh;
+}
+
+.barra-de-cima {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    background-color: var(--BrancoMelvs);
+}
+
+.toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background-color: var(--BrancoMelvs);
+    font-size: 2.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.Sair {
+    position: relative;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    width: 40px;
+}
+
+.Sair img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* tag ativar */
+.navegacao.ativar {
+    width: 60px;
+}
+
+.menu.ativar {
+    width: calc(100% - 80px);
+    left: 80px;
+}
+
+.adicionar{
+    display: none;
+}
+
+.adicionar4{
+    margin-left: 3px;
+    margin-right: 6px;
+    background-color: var(--adicionar);
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+
+}
+
+.icone2{
+    align-items: center;
+    width: 100%;
+    display: flex;
+   justify-content: flex-end;
+}
+
+.menu img {
+    
+}
