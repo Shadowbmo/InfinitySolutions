@@ -1,0 +1,166 @@
+/* Cores e Reset de CSS e padronização */
+
+:root {
+    --corInicial: #2c50c9;
+    --corSecundaria: #d057e0;
+    --corTexto: #7c5a5a;
+  }
+  
+  
+  :root {
+    --body-font: 'Poppins', sans-serif;
+    --h1-font-size: 2.5rem;
+    --h2-font-size: 1rem;
+    --normal-font-size: 0.93rem;
+    --small-font-size: 0.81rem;
+    --h3-font-size: 1.12rem;
+    --normal-font-size: .983rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+  
+    --mb-0-23: .25rem;
+    --mb-0-5: .5rem;
+    --mb-0-75: .75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+    --mb-3: 3rem;
+  
+  }
+  
+  @media screen and (min-width: 768px) {
+    :root {
+      --h1-font-size: 4.5rem;
+      --h2-font-size: 2rem;
+      --normal-font-size: 1rem;
+      --small-font-size: 1.37rem;
+    }
+  }
+  
+  /*z index*/
+  :root {
+    --z-back: -10;
+    --z-normal: 1;
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+  }
+  
+  /*----- BASE -----*/
+  *,
+  ::before,
+  ::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  .body {
+    margin: 3rem 0 0 0;
+    font-family: var(--body-font);
+    background-color: var(--black-color);
+    color: var(--white-color);
+    font-weight: 700;
+    overflow: hidden;
+  }
+  
+  
+  .body2 {
+    margin: 3rem 0 0 0;
+    font-family: var(--body-font);
+    background-color: var(--black-color);
+    color: var(--white-color);
+    font-weight: 700;
+  }
+  
+  h1,
+  h2 {
+    margin: 0;
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  img {
+    height: 50px;
+  }
+  
+  
+  
+  
+  /* 
+  Cores e Reset de CSS e padronização 
+  -------------------------------------------
+  Header
+  */
+  .container {
+    width: 100%;
+    backdrop-filter: blur(10px);
+  }
+  
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: var(--z-fixed);
+    z-index: 500;
+  }
+  
+  nav {
+    height: 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    margin-left: 5%;
+    transition: .4s;
+    color: var(--corInicial);
+  }
+  
+  .logo:hover {
+    color: var(--corSecundaria);
+  }
+  
+  .menu {
+    position: fixed;
+    bottom: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .menuLista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 35%;
+    border-radius: 4rem;
+    padding: 1rem 2.25rem;
+    backdrop-filter: blur(10px);
+  }
+  
+  .iconesHeader {
+    font-size: 1.25rem;
+    padding: .4rem;
+    display: flex;
+    border-radius: 5rem;
+  }
+  
+  
+  .Registro {
+    margin-right: 5%;
+  }
+  
