@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Funcionário</title>
+    <title>Cadastro Totem</title>
 
     <!-- Linkando O  CSS da tela de dashboard (grafico)-->
     <link rel="stylesheet" href="./css/estilo_Tela_Inicial_Do_Grafico.css">
@@ -62,7 +62,7 @@
     <!-- **************************************************************************************** -->
     <div class="add_funcionario">
         <div class="lista_funcionario">
-            <h1 class="titulo_funcionario">Funcionários</h1>
+            <h1 class="titulo_funcionario">Totem</h1>
             <dialog class="dialogzinho">
 
                 <div class="dialog">
@@ -76,33 +76,20 @@
                     </div>
                     <div id="form" class="form">
                         <div class="containerInput">
-                            <input class="input margin" placeholder="Nome" id="input_nome_funcionario">
+                            <input class="input margin" placeholder="Número de identificação" id="input_numero_identificacao">
                         </div>
                         <div class="containerInput">
-                            <input class="input margin" placeholder="Email" id="input_email_funcionario">
+                            <input class="input margin" placeholder="Data de fabricação" id="input_data_fabricacao">
                         </div>
                         <div class="containerInput">
-                            <input class="input margin" type="password" placeholder="Senha"
-                                id="input_senha_funcionario"> <br>
-                            <i class="fas fa-check-circle"></i>
-                            <i class="fas fa-exclamation-circle"></i>
+                            <input class="input margin" type="text" placeholder="Marca"
+                                id="input_marca"> <br>
                         </div>
                         <div class="containerInput">
-                            <input class="input margin" placeholder="CPF" id="input_cpf_funcionario" maxlength="11"
-                                onkeyup="cpfPontos()"> <br>
+                            <input class="input margin" placeholder="Sistema Operacional" id="input_so_maquina" type="text"> <br>
                         </div>
-                        <div class="containerInput">
-                            <input class="input margin" placeholder="CNPJ" id="input_cnpj_funcionario"
-                                onkeyup="cnpjPontos()" maxlength="14">
-                        </div>
-                        <div class="containerInput">
-                            <select class="input margin" id="input_tipo_funcionario">
-                                <option value="">Permissão</option>
-                                <option value="2">Gerente</option>
-                                <option value="3">Analista</option>
-                            </select>
-                        </div><!-- Container input-->
-                        <button onclick="cadastrarUsuario()">Adicionar Funcionário</button>
+                            <!-- Container input-->
+                        <button onclick="cadastrarTotem()">Adicionar Totem</button>
                     </div> <!-- formulario -->
                 </div> <!-- div - menu -->
             </dialog>
@@ -112,7 +99,7 @@
 
     <div class="listaConteudo">
         <div class="cadastrar">
-            <button onclick="modal()"><i class="uil uil-user-plus"></i> Cadastrar Funcionario</button>
+            <button onclick="modal()"><i class="uil uil-user-plus"></i> Cadastrar Totem</button>
         </div>
         <ul id="listaEmpresa">
         </ul>
