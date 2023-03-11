@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="../Public/css/TelaLogin.CSS">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container" id="containerLoading">
+        <div class="content login">
+
+            <div class="containerDireita" id="containerEsquerda">
+                <div class="logo-nome">
+                    <img src="../Public/assets/Logo.svg" width="225px">
+                    <h1>Infinity Solutions</h1>
+                </div>
+                <h2 class="titulo direita"> Não possui uma conta ? </h2>
+                <p class="descricao">Cadastre-se agora!</p>
+                <div class="botaoEsquerda">
+                 <a href="#" class="button" onclick="cadastro()" id="signin" style="--line_color: white">
+                    <div class="button__line"></div>
+                    <div class="button__line"></div>
+                    <span class="button__text" style="color:white">Cadastrar</span>
+                    <div class="button__drow1"></div>
+                    <div class="button__drow2"></div>
+                  </a>
+                </div>
+            </div> <!-- container direita -->
+
+            <div class="containerEsquerda" id="containeES">
+                <h2 class="titulo titulo-direita">Entre Agora mesmo</h2>
+                <div class="formulario">
+                    <!-- NICK NICK NICK NICK NICK NICK NICK NICK NICK NICK NICK NICK NICK NICK NICK  -->
+                    <div class="inputs">
+                        <i class="far fa-envelope icones"></i>
+                        <input type="email" placeholder="Email, CPF ou CNPJ" id="input_email_login">
+                    </div>
+
+                    <!-- SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA -->
+                    <div class="inputs">
+                        <i class="fas fa-lock icones"></i>
+                        <input type="password" placeholder="Password" id="input_senha_login">
+                    </div>
+
+                    <!-- BUTAO CADASTRAR BUTAO CADASTRAR BUTAO CADASTRAR BUTAO CADASTRAR BUTAO CADASTRAR -->
+                    <div class="botao">
+                    <a href="#" class="button" onclick="entrar()">
+                        <div class="button__line"></div>
+                        <div class="button__line"></div>
+                        <span class="button__text">Logar</span>
+                        <div class="button__drow1"></div>
+                        <div class="button__drow2"></div>
+                      </a>
+                    </div>
+                    <span id="span_login">
+                    </span>
+
+                </div>
+            </div><!-- Container esquerda -->
+        </div><!-- container login -->
+        <div class="content registro">
+
+            <div class="containerDireita">
+                <div class="logo-nome">
+                    <img src="../Public/assets/Logo.svg" width="225" id="logo2">
+                    <h1>Infinity Solutions</h1>
+                </div>
+                <h2 class="titulo direita" style="color:black"> Bem Vindo!</h2>
+                <p class="descricao" style="color:black">já possui uma uma conta ?</p>
+                <p class="descricao" style="color:black">mantenha-se conectado</p>
+                <div class="botaoEsquerda">
+                  <a href="#" class="button" onclick="logar()" id="signup">
+                    <div class="button__line"></div>
+                    <div class="button__line"></div>
+                    <span class="button__text">Logar</span>
+                    <div class="button__drow1"></div>
+                    <div class="button__drow2"></div>
+                  </a>
+                </div>
+            </div> <!-- container direita -->
+
+            <div class="containerEsquerda">
+                <h2 class="titulo titulo-direita2">Cadastre-se</h2>
+
+                <div class="formulario">
+                        <!-- NOME FANTASIA NOME FANTASIA NOME FANTASIA NOME FANTASIA NOME FANTASIA NOME FANTASIA NOME FANTASIA NOME FANTASIA  -->
+                        <div class="inputs">
+                            <i class="far fa-user icones"></i>
+                            <input placeholder="Nome Fantasia" id="input_nome_fantasia">
+                        </div>
+                        <span id="span_validacao_nome_fantasia">
+                        </span>
+
+                        <!-- CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ -->
+                        <div class="inputs">
+                            <i class="far fa-user icones"></i>
+                            <input placeholder="CNPJ" id="input_nome_cnpj">
+                        </div>
+                        <span id="span_validacao_cnpj">
+                        </span>
+
+                        <!-- EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL  -->
+                        <div class="inputs">
+                            <i class="far fa-envelope icones"></i>
+                            <input type="email" placeholder="Email" id="input_email">
+                        </div>
+                        <span id="span_validacao_email">
+                        </span>
+
+                        <!-- SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA -->
+                        <div class="inputs">
+                            <i class="fas fa-lock icones"></i>
+                            <input type="password" placeholder="Senha" id="input_senha">
+                        </div>
+                        <span id="span_validacao_senha">
+                        </span>
+
+                        <!-- CONFIRMA SENHA CONFIRMA SENHA CONFIRMA SENHA CONFIRMA SENHA CONFIRMA SENHA CONFIRMA SENHA CONFIRMA SENHA CONFIRMA SENHA  -->
+                        <div class="inputs">
+                            <i class="fas fa-lock icones"></i>
+                            <input type="password" placeholder="Confirme a senha" id="confirmacao_senha_input">
+                            <span id="span_validacao_confirmacao_de_senha">
+                        </div>
+                        </span>
+                    </div>
+                    <div class="botaoCadastrar">
+                     <a href="#" class="button" onclick="validar()">
+                        <div class="button__line"></div>
+                        <div class="button__line"></div>
+                        <span class="button__text">Cadastrar</span>
+                        <div class="button__drow1"></div>
+                        <div class="button__drow2"></div>
+                      </a>
+                    </div>
+                    <!-- BUTAO CADASTRAR BUTAO CADASTRAR BUTAO CADASTRAR BUTAO CADASTRAR BUTAO CADASTRAR -->
+                </div> <!-- furmulario -->
+
+            </div><!-- Esquerda -->
+        </div><!-- container Registro-->
+    </div>
+    <span id="aguardarLoading" class="aguardar" style="display: none;">
+        <img src="./assets/img/loading.gif">
+    </span>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
+</body>
+
+</html>
+<script src="../Public/js/TelaLogin.JS"></script>
