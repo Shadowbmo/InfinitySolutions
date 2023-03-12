@@ -22,7 +22,7 @@
 }
 
 .card .icones i {
-    color: var(--TextoVerdeEscuro);
+    color: var(--TextoPreto);
     opacity: 0.5;
     cursor: pointer;
     position: relative;
@@ -35,7 +35,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
-    color: var(--TextoVerdeEscuro);
+    color: var(--TextoPreto);
 }
 
 .nome-do-armazem-e-sua-descrisao .nome-do-armazem {
@@ -87,7 +87,7 @@
 
 
 .card .botao button {
-    color: var(--TextoVerdeEscuro);
+    color: var(--TextoPreto);
     background-color: var(--Botao);
     border: none;
     padding: 8px 22px;

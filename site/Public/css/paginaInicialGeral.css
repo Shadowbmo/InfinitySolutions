@@ -12,12 +12,12 @@
 
 :root {
     --brancopuro: #FFF;
-    --BrancoMelvs: #eff0e8d5;
+    --BrancoMelvs: #F0F2E8;
     --VerdeClaro: #11C76F;
     --HoverMenu: rgba(23, 233, 132, 0.701);
-    --TextoPreto: #000;
+    --TextoPreto: #006986;
     --TextoVerdeEscuro: #ebe4e4;
-    --VerdeEscuro: #054A29;
+    --VerdeEscuro: #006986;
     --FundoGrafico: #eff0e8d5;
     --Sombra: rgba(0, 0, 0, 0.08);
     --TextoVerdeClaro: #11C76F;
@@ -25,7 +25,7 @@
     --critico: #ff0000;
     --ok: #11C76F;
     --atencao:  #bbb502;
-    --adicionar: #D4FADE;
+    --adicionar:#006880;
     --BackgroundLinear: linear-gradient(to bottom, #00ef7e, #006986, #01118a);
 }
 
@@ -41,7 +41,7 @@ body.Escuro {
     --HoverMenu: #4D4C4C;
     --TextoPreto: #CCC;
     --TextoVerdeEscuro: #CCC;
-    --VerdeEscuro: #3A4A40;
+    --VerdeEscuro: #ccc;
     --FundoGrafico: rgba(255, 255, 255, 0.179);
     --Sombra: rgba(255, 255, 255, 0.179);
     --brancopuro: #000;
@@ -53,7 +53,9 @@ body.Escuro {
     --BackgroundLinear:#242526 ;
     ;
 }
-
+body{
+    background-color: var(--BrancoMelvs);
+}
 i {
     font-size: 24px;
     min-width: 60px;
@@ -73,7 +75,7 @@ i {
     width: 300px;
     height: 100%;
     background: var(--BackgroundLinear);
-    border-left: 3px solid var(--VerdeClaro);
+    border-left: 3px solid var(--BackgroundLinear);
     overflow: hidden;
     transition: 0.5s;
 }
@@ -200,6 +202,9 @@ i {
     justify-content: center;
 
 }
+.toggle i {
+    color: var(--TextoPreto);
+}
 
 .Sair {
     position: relative;
@@ -210,14 +215,8 @@ i {
     width: 40px;
 }
 
-.Sair img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+
+
 
 /* tag ativar */
 .navegacao.ativar {
@@ -241,6 +240,27 @@ i {
     border-bottom-right-radius: 30px;
 
 }
+.adicionar4 img {
+    position: relative;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+width: 35px;
+height: 35px;
+}
+.adicionar4 .arrumar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+}
 
 .icone2{
     align-items: center;
@@ -250,5 +270,9 @@ i {
 }
 
 .menu img {
-    
+    font-size: 24px;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
 }

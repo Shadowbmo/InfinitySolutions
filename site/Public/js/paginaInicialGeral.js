@@ -22,7 +22,8 @@ function header() {
                 </div>
             </li>
             <li>
-                <a href="#">
+            <a href="./paginaInicial.html">
+
 
                     <!-- Imagem do ICONE DO GRAFICO-->
                     <span class="icone"> <i class="uil uil-home"></i> </span>
@@ -46,21 +47,24 @@ function header() {
                     <a href="#">
 
                         <!--Imagem do ICONE DE ADICIONAR -->
-                        <span class="icone"> <i class="uil uil-estate"></i> </span>
-                        <span class="titulo"> Adicionar Armazem</span>
+                        <span class="icone"> <span class="arrumar"> <img src="./assets/icones/iconeSupermercadoHeader.svg" alt="">
+                        </span> </span>
+                        <span class="titulo"> Adicionar Supermecado</span>
                     </a>
                 </li>
                 <li>
                     <a href="./cadastro_empresa.html">
 
                         <!--Imagem do ICONE DE ADICIONAR -->
-                        <span class="icone"> <i class="uil uil-building"></i></span>
-                        <span class="titulo"> Adicionar Empresa</span>
+                        <span class="icone">                     <span class="arrumar">            <img src="./assets/icones/iconeTotem.svg" alt="">
+</span>
+                        </span>
+                        <span class="titulo"> Adicionar Totem</span>
 
                     </a>
                 </li>
                 <li>
-                    <a href="./cadastro_funcionario.html">
+                    <a href="./cadastroFuncionario.html">
 
                         <!--Imagem do ICONE DE ADICIONAR -->
                         <span class="icone"> <i class="uil uil-user-plus"></i> </span>
@@ -98,7 +102,7 @@ function header() {
                 </a>
             </li>
             <li>
-                <a href="./index.html">
+                <a href="./Index.html">
 
                     <!-- Botão de Sair  -->
                     <span class="icone"><i class="uil uil-signout"></i> </span>

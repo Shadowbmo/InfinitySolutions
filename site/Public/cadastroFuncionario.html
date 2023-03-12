@@ -21,7 +21,7 @@
     <link rel="shortcut icon" href="./assets/img/favicon-32x32.png" type="image/x-icon" />
 </head>
 
-<body onload="atualizarFuncionario()">
+<body>
 
     <div id="bodyzinho">
 
@@ -63,53 +63,9 @@
     <div class="add_funcionario">
         <div class="lista_funcionario">
             <h1 class="titulo_funcionario">Funcionários</h1>
-            <dialog class="dialogzinho">
-
-                <div class="dialog">
-                    <div class="header">
-                        <i class="uil uil-times-circle" onclick='fechar()'></i>
-                        <div class="alinhamento">
-                            <span>Infinity Solutions</span>
-                            <img src="./assets/img/Monitoring Solution (500 × 250 px).svg">
-                        </div>
-                        <i></i>
-                    </div>
-                    <div id="form" class="form">
-                        <div class="containerInput">
-                            <input class="input margin" placeholder="Nome" id="input_nome_funcionario">
-                        </div>
-                        <div class="containerInput">
-                            <input class="input margin" placeholder="Email" id="input_email_funcionario">
-                        </div>
-                        <div class="containerInput">
-                            <input class="input margin" type="password" placeholder="Senha"
-                                id="input_senha_funcionario"> <br>
-                            <i class="fas fa-check-circle"></i>
-                            <i class="fas fa-exclamation-circle"></i>
-                        </div>
-                        <div class="containerInput">
-                            <input class="input margin" placeholder="CPF" id="input_cpf_funcionario" maxlength="11"
-                                onkeyup="cpfPontos()"> <br>
-                        </div>
-                        <div class="containerInput">
-                            <input class="input margin" placeholder="CNPJ" id="input_cnpj_funcionario"
-                                onkeyup="cnpjPontos()" maxlength="14">
-                        </div>
-                        <div class="containerInput">
-                            <select class="input margin" id="input_tipo_funcionario">
-                                <option value="">Permissão</option>
-                                <option value="2">Gerente</option>
-                                <option value="3">Analista</option>
-                            </select>
-                        </div><!-- Container input-->
-                        <button onclick="cadastrarUsuario()">Adicionar Funcionário</button>
-                    </div> <!-- formulario -->
-                </div> <!-- div - menu -->
-            </dialog>
-
         </div>
     </div>
-
+    
     <div class="listaConteudo">
         <div class="cadastrar">
             <button onclick="modal()"><i class="uil uil-user-plus"></i> Cadastrar Funcionario</button>
@@ -119,6 +75,62 @@
     </div>
 </div>
 
+<div class="alinhar">
+
+    <dialog class="dialogzinho">
+        <div class="dialog">
+            <div class="header">
+                <i class="uil uil-times-circle" onclick='fechar()'></i>
+                <div class="alinhamento">
+                    <span>Infinity Solutions</span>
+                    <img src="./assets/img/Monitoring Solution (500 × 250 px).svg">
+                </div>
+                <i></i>
+            </div>
+            <div id="form" class="form">
+                <div class="containerInput">
+                    <input class="input margin" placeholder="Nome" id="input_nome_funcionario">
+                </div>
+                <div class="containerInput">
+                    <input class="input margin" placeholder="Email" id="input_email_funcionario">
+                </div>
+                <div class="containerInput">
+                    <input class="input margin" type="password" placeholder="Senha"
+                        id="input_senha_funcionario"> <br>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <div class="containerInput">
+                    <input class="input margin" placeholder="CPF" id="input_cpf_funcionario" maxlength="11"
+                        onkeyup="cpfPontos()"> <br>
+                </div>
+                <div class="containerInput">
+                    <input class="input margin" placeholder="CNPJ" id="input_cnpj_funcionario"
+                        onkeyup="cnpjPontos()" maxlength="14">
+                </div>
+                <div class="containerInput">
+                    <input class="input margin" placeholder="CNPJ" id="input_cnpj_funcionario"
+                        onkeyup="cnpjPontos()" maxlength="14">
+                </div>
+                <div class="containerInput">
+                    <input class="input margin" placeholder="CNPJ" id="input_cnpj_funcionario"
+                        onkeyup="cnpjPontos()" maxlength="14">
+                </div>
+                <div class="containerInput">
+                    <select class="input margin" id="input_tipo_funcionario">
+                        <option value="">Permissão</option>
+                        <option value="Gerente">Gerente</option>
+                        <option value="Analista">Analista</option>
+                    </select>
+                 
+                    
+                    
+                </div><!-- Container input-->
+                <button onclick="cadastrarUsuario()">Adicionar Funcionário</button>
+            </div> <!-- formulario -->
+        </div> <!-- div - menu -->
+    </dialog>
+</div>
 </body>
 </html>
 
@@ -131,132 +143,43 @@
 </script>
 <script>
 
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+function cadastrarUsuario(){
 
-    function limparFormulario() {
-        document.getElementById("form_postagem").reset();
-    }
-
-    var idUsuario = sessionStorage.ID_USUARIO
-    function cadastrarUsuario() {
-        var dadosInput = {
-            nome: input_nome_funcionario.value,
-            email: input_email_funcionario.value,
-            tipo: input_tipo_funcionario.value,
-            cpf: input_cpf_funcionario.value,
-            senha: input_senha_funcionario.value,
-            id: idUsuario
-        }
-
-        fetch(`/avisos/cadastrarUsuario`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(dadosInput)
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-
-                cadastrarFuncionario()
-
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-
-        return false;
-
-    }
-
-    function cadastrarFuncionario() {
-
-        var dadosInput = {
-            cnpj: input_cnpj_funcionario.value,
-            cpf: input_cpf_funcionario.value,
-        }
-
-        fetch(`/avisos/cadastrarFuncionario`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(dadosInput)
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-
-        return false;
-
-    }
-
-
-    function atualizarFuncionario() {
-        var id = idUsuario;
-        fetch(`/avisos/atualizarFuncionario/${id}`).then(function (resposta) {
-            if (resposta.ok) {
-                if (resposta.status == 204) {
-                    throw "Nenhum resultado encontrado!!";
-                }
-
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
-                        console.log(resposta[i])
-                        listaEmpresa.innerHTML += `
-
-<li>
-<div class="avatar">
-<img src="./assets/icons/user (1).svg" alt="">
-</div>
-<div class="descrisao">
-<span>                   
-Nome: ${publicacao.nome}
-</span>
-<span>
-Email: ${publicacao.email}
-</span>
-<span>
-tipo: ${publicacao.descPerfil}
-</span>
-<span>                   
-CPF: ${publicacao.cpf}
-</span>
-<span>                   
-Empresa: ${publicacao.nomeFantasia}
-</span>
-</div>
-</li>
-`
-                    }
-
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-        });
-    }
+    var nome_funcionario = input_nome_funcionario.value;
+            var email_funcionario = input_email_funcionario.value;
+            var empresa_funcionario = input_cnpj_funcionario.value;
+            var tipo_funcionario = input_tipo_funcionario.value;
+    
+    
+     
+                            listaEmpresa.innerHTML += `
+    
+    <li>
+    <div class="avatar">
+        <img src="./assets/icones/user (1).svg" alt="">
+    </div>
+    <div class="descrisao">
+    <span>                   
+    Nome: ${nome_funcionario}
+    </span>
+    <span>
+    Email: ${email_funcionario}}
+    </span>
+    <span>
+    tipo: ${tipo_funcionario}
+    </span>
+    <span>                   
+    CPF: 111.111.111-11
+    </span>
+    <span>                   
+    Empresa: ${empresa_funcionario}
+    </span>
+    </div>
+    </li>
+    `
+    fechar()
+}
+           
 </script>
 
 <script>
@@ -307,39 +230,6 @@ Empresa: ${publicacao.nomeFantasia}
         body.classList.toggle("Escuro");
     });
 
-</script>
-<!--function para add na lista de empresa-->
-<script>
-    var lista_nome_funcionario = [];
-    var lista_email_funcionario = [];
-    var lista_empresa_funcionario = [];
-    var lista_tipo_funcionario = [];
-
-    function add_funcionario() {
-        var nome_funcionario = input_nome_funcionario.value;
-        var email_funcionario = input_email_funcionario.value;
-        var empresa_funcionario = input_empresa_funcionario.value;
-        var tipo_funcionario = input_tipo_funcionario.value;
-
-        lista_nome_funcionario.push(nome_funcionario);
-        lista_email_funcionario.push(email_funcionario);
-        lista_empresa_funcionario.push(empresa_funcionario);
-        lista_tipo_funcionario.push(tipo_funcionario)
-        div_nome_funcionario.innerHTML = ""
-        div_email_funcionario.innerHTML = ""
-        div_empresa_funcionario.innerHTML = ""
-        div_tipo_funcionario.innerHTML = ""
-
-        for (var contador_funcionario = 0;
-            contador_funcionario < lista_nome_funcionario.length;
-            contador_funcionario++) {
-
-            div_nome_funcionario.innerHTML += `${lista_nome_funcionario[contador_funcionario]} <br>`;
-            div_email_funcionario.innerHTML += `${lista_email_funcionario[contador_funcionario]} <br>`;
-            div_empresa_funcionario.innerHTML += `${lista_empresa_funcionario[contador_funcionario]} <br>`;
-            div_tipo_funcionario.innerHTML += `${lista_tipo_funcionario[contador_funcionario]}<br>`
-        }
-    }
 </script>
 
 <script>
