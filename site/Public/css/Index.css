@@ -1,0 +1,107 @@
+/* Reset do css e cores */
+
+:root{
+--PrimeiraCor: #017A8B;
+--PrimeiraCorEscura:#2F4858;
+--Texto: #524748;
+--PrimeiraCorClara: #00AFA6;
+--PrimeiraCorMaisClara:#00C9A7;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+:root {
+    --h1-font-size: 2.5rem;
+    --h2-font-size: 1rem;
+    --normal-font-size: 0.93rem;
+    --small-font-size: 0.81rem;
+  }
+    :root {
+    --z-back: -10;
+    --z-normal: 1;
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+  }
+    *, ::before, ::after {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  
+  body {
+    margin: 3rem 0 0 0;
+    font-family: var(--body-font);
+    background-color: var(--black-color);
+    color: var(--white-color);
+    font-weight: 700;
+    overflow: hidden;
+  }
+  
+  h1, h2 {
+    margin: 0;
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+/* 
+
+Reset do Css e cores
+
+-----------------------------
+
+Header
+
+/*
+
+
+/* 
+
+Header
+
+-----------------------------
+
+PrimeiraVista 
+
+/*
