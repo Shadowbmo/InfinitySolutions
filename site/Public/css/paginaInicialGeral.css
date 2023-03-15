@@ -1,0 +1,500 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    --brancopuro: #FFF;
+    --BrancoMelvs: #F0F2E8;
+    --VerdeClaro: #11C76F;
+    --HoverMenu: rgba(23, 233, 132, 0.701);
+    --TextoPreto: #006986;
+    --TextoVerdeEscuro: #ebe4e4;
+    --VerdeEscuro: #006986;
+    --FundoGrafico: #eff0e8d5;
+    --Sombra: rgba(0, 0, 0, 0.08);
+    --TextoVerdeClaro: #11C76F;
+    --Botao: #D9D9D9;
+    --critico: #ff0000;
+    --ok: #11C76F;
+    --atencao:  #bbb502;
+    --adicionar:#006880;
+    --BackgroundLinear: linear-gradient(to bottom, #00ef7e, #006986, #01118a);
+}
+
+.bodyHeader {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--BrancoMelvs);
+}
+
+body.Escuro {
+    --BrancoMelvs: #3A3B3C;
+    --VerdeClaro: #242526;
+    --HoverMenu: #4D4C4C;
+    --TextoPreto: #CCC;
+    --TextoVerdeEscuro: #CCC;
+    --VerdeEscuro: #ccc;
+    --FundoGrafico: rgba(255, 255, 255, 0.179);
+    --Sombra: rgba(255, 255, 255, 0.179);
+    --brancopuro: #000;
+    --TextoVermelho: #B75E38;
+    --TextoLaranja:#F9F871;
+    --TextoVerdeClaro: #11C76F;
+    --Botao: #697987;
+    --adicionar: #3a3a3a;
+    --BackgroundLinear:#242526 ;
+    ;
+}
+body{
+    background-color: var(--BrancoMelvs);
+}
+i {
+    font-size: 24px;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: var(--TextoVerdeEscuro);
+}
+
+.containerGrafico {
+    position: relative;
+    width: 100%;
+}
+
+.navegacao {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: var(--BackgroundLinear);
+    border-left: 3px solid var(--BackgroundLinear);
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.navegacao ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+}
+
+.navegacao ul li {
+    position: relative;
+    width: 100%;
+    border-radius: 30px;
+}
+
+.navegacao ul li .fotoDePerfil {
+    margin-bottom: 40px;
+}
+
+/* hover */
+
+.navegacao ul li:hover {
+    background: var(--HoverMenu);
+}
+
+.caixas .caixa:hover {
+    background: var(--VerdeClaro);
+    opacity: 0.8;
+}
+
+.caixas .caixa:hover .KPI-numeros {
+    color: var(--TextoPreto);
+    font-weight: bold;
+
+}
+
+
+.caixas .caixa:hover .KPI-nome {
+    color: var(--TextoPreto);
+    font-weight: bold;
+}
+
+
+.navegacao ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: var(--TextoVerdeEscuro);
+
+}
+
+.navegacao ul li a .icone {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+
+}
+
+.navegacao ul li a i {
+    font-size: 24px;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: var(--TextoVerdeEscuro);
+}
+
+
+.navegacao ul li a .titulo {
+    position: relative;
+    display: block;
+    padding: 0 10pxs;
+    height: 60px;
+    line-height: 60px;
+}
+
+.navegacao ul li a .Modo {
+    position: relative;
+    display: block;
+    padding: 0 10pxs;
+    height: 60px;
+    line-height: 60px;
+}
+
+
+
+
+.menu {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    transition: 0.5s;
+    background-color: transparent;
+}
+
+.barra-de-cima {
+    width: 10%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    background-color: transparent;
+}
+
+.toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    font-size: 2.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+}
+.toggle i {
+    color: var(--TextoPreto);
+}
+
+.Sair {
+    position: relative;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    width: 40px;
+}
+
+
+
+
+/* tag ativar */
+.navegacao.ativar {
+    width: 60px;
+}
+
+.menu.ativar {
+    width: calc(100% - 80px);
+    left: 80px;
+}
+
+.adicionar{
+    display: none;
+}
+
+.adicionar4{
+    margin-left: 3px;
+    margin-right: 6px;
+    background-color: var(--adicionar);
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+
+}
+.adicionar4 img {
+    position: relative;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+width: 35px;
+height: 35px;
+}
+.adicionar4 .arrumar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+}
+
+.icone2{
+    align-items: center;
+    width: 100%;
+    display: flex;
+   justify-content: flex-end;
+}
+
+.menu img {
+    font-size: 24px;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+}
+
+
+.header{
+    display: flex;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    background-color: #006986;
+}
+
+.nav{
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navLogo, .navToggle{
+font-weight: bold;
+width: 100%;
+background-color: #006986;
+}
+
+.navToggle{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navBtns{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.navLogo{
+    padding-left: 30px ;
+}
+
+.navLogo:hover{
+    color: blue;
+}
+
+.navToggle{
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    width: 80vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.navToggle:hover{
+    opacity: 0.6;
+    transition: 3s;
+}
+
+@media screen and (max-width: 768px){
+    .navMenu{
+        position: fixed;
+        bottom: -100%; /* tem q colocar -100% aqui*/
+        left: 0;
+        width: 100%;
+        padding: 2rem 1.5rem 4rem; 
+        box-shadow: 0 -1px 4px rgba(0, 0, 0,.15);
+        border-radius: 1.5rem 1.5rem 0 0;
+        transition: .3s;   
+        display: flex;
+        
+        justify-content: space-evenly;
+    } 
+}
+
+.navList{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    list-style: none;
+}
+
+.aparecerMenu{
+    bottom: 0;
+}
+.navClose{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.navClose i {
+    justify-content: center;
+    align-items: center ;
+    color: red;
+}
+.navLink{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    font-size: 20px;
+}
+
+.navItem{
+    width: 80vw;
+}
+
+
+@media only screen and (min-width: 300px) {
+    .bodyk {
+      display: none;
+    }
+  
+    .menu {
+      display: none;
+    }
+  
+    .adicionarFuncionario {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .lista_funcionario {
+      width: 100%;
+    }
+  
+    .listaConteudo {
+      width: 100%;
+    }
+  }
+  
+  @media only screen and (min-width: 600px) {
+    .adicionarFuncionario {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .lista_funcionario {
+      width: 100%;
+    }
+  
+    .listaConteudo {
+      width: 100%;
+    }
+  
+    .bodyk {
+      display: none;
+    }
+  
+    .menu {
+      display: none;
+    }
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .bodyk {
+      display: block;
+    }
+  
+    .menu {
+      display: block;
+    }
+  
+    .adicionarFuncionario {
+      width: 100%;
+    }
+  
+    .lista_funcionario {
+      margin-left: 50px;
+      width: 90%;
+    }
+  
+    .listaConteudo {
+      width: 90%;
+      margin-left: 50px;
+    }
+  }
+  
+  @media only screen and (min-width: 992px) {
+  
+    .bodyk {
+      display: block;
+    }
+  
+    .menu {
+      display: block;
+    }
+  
+    .adicionarFuncionario {
+      width: 100%;
+    }
+  
+  
+    .lista_funcionario {
+      margin-left: 50px;
+      width: 90%;
+    }
+  
+    .listaConteudo {
+      width: 90%;
+      margin-left: 50px;
+    }
+  }
+  
+  @media only screen and (min-width: 1200px) {
+    .bodyk {
+      display: block;
+    }
+  
+    .menu {
+      display: block;
+    }
+  
+    .lista_funcionario {
+      width:100%;
+    }
+  
+    .listaConteudo {
+      width: 100%;
+    }
+  
+  }
