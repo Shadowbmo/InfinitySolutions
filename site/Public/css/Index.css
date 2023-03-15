@@ -1,0 +1,552 @@
+/* Cores e Reset de CSS e padronização */
+
+:root {
+  --corInicial: #01118a;
+  --corSecundaria: #d057e0;
+  --corTexto: #7c5a5a;
+}
+
+
+:root {
+  --body-font: 'Poppins', sans-serif;
+  --h1-font-size: 2.5rem;
+  --h2-font-size: 1rem;
+  --normal-font-size: 0.93rem;
+  --small-font-size: 0.81rem;
+  --h3-font-size: 1.12rem;
+  --normal-font-size: .983rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  --mb-0-23: .25rem;
+  --mb-0-5: .5rem;
+  --mb-0-75: .75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+  --mb-3: 3rem;
+
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --h1-font-size: 4.5rem;
+    --h2-font-size: 2rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 1rem;
+  }
+}
+
+/*z index*/
+:root {
+  --z-back: -10;
+  --z-normal: 1;
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
+}
+
+/*----- BASE -----*/
+*,
+::before,
+::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.body {
+  margin: 3rem 0 0 0;
+  font-family: var(--body-font);
+  font-weight: 700;
+  overflow: hidden;
+}
+
+body {
+}
+
+.body2 {
+  margin: 3rem 0 0 0;
+  font-family: var(--body-font);
+  color: var(--white-color);
+  font-weight: 700;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  height: 50px;
+}
+
+
+
+
+/* 
+Cores e Reset de CSS e padronização 
+-------------------------------------------
+Menu
+*/
+
+
+
+.home {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  height: 100vh;
+  background-color: #6F9B7A;
+  font-weight: 700;
+}
+
+.texto {
+  font-size: var(--small-font-size);
+}
+
+.Titulo {
+  font-size: var(--h1-font-size);
+}
+
+.Botao {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: .75rem;
+  color: var(--white-color);
+  padding: .625rem 1rem;
+  border-radius: .25rem;
+  background-image: -webkit-gradient(linear, left top, right top, from(var(--black-color)), to(var(--corInicial)));
+  background-image: linear-gradient(to right, var(--corSecundaria), var(--corInicial));
+}
+
+.ContainerImagem {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.ContainerTexto {
+  width: 50%;
+}
+
+/* 
+Header
+-------------------------------------------
+Navegação
+*/
+section {
+  padding: 2rem 0 4rem;
+  z-index: 300;
+  width: 100%;
+}
+
+.sectionTitulo {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.sectionSubtitulo {
+  display: block;
+  text-align: center;
+  font-size: var(--small-font-size);
+
+}
+
+.sectionSubtitulo2 {
+  display: block;
+  text-align: center;
+  font-size: var(--small-font-size);
+  margin-bottom: 20px;
+}
+
+.Grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.Inativo {
+  display: none;
+}
+
+/* 
+Menu
+-------------------------------------------
+Servicos
+*/
+.services{
+  background-color: #F0F2E8 !important;
+  width: 100%;
+}
+.imagemFundo img {
+  width: 100%;
+  height: 100%;
+
+}
+
+.imagemFundo {
+  width: 100%;
+  height: 100%;
+}
+.Cima{
+  background-color: #F0F2E8;
+}
+
+.Baixo{
+  background-color: #6F9B7A;
+}
+
+.ContainerImagem img {
+  width: 50vw;
+  height: 50vh;
+
+}
+
+.servicosContainer {
+  gap: 1rem;
+  display: flex;
+  background-color: #F0F2E8;
+  justify-content: center;
+}
+
+.servicoCaixa {
+  position: relative;
+  background-color: #C4CFC4;
+  height: 350px;
+  width: 400px;
+  box-shadow: 0 2px 4px #4B6971;
+  transform: .3s;
+  border: 1px solid #4B6971;
+}
+
+.servicoCaixa:hover {
+  box-shadow: 0 4px 8px black;
+}
+
+.servicoCaixa img {
+  width: 150px;
+  height: 150px;
+}
+
+.servicoCaixa .imagem {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.servicoCaixa .beneficios {
+  height: 50%;
+  justify-content: center;
+  display: flex;
+  font-size: 17px;
+  text-align: center;
+  padding: 30px;
+}
+
+/* 
+servicos
+-------------------------------------------
+Passo-A-Passo
+*/
+.passos {
+  background-color: #6F9B7A;
+  height: 100%;
+}
+.passoTabs{
+display: flex;
+justify-content: space-evenly;
+margin-bottom: var(--mb-2);
+}
+
+.passoData{
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  column-gap: 1.5rem;
+}
+
+.passoTitulo{
+font-size: var(--normal-font-size);
+font-weight: var(--font-medium);
+}
+
+.passoSubtitulo{
+  display: inline-block;
+  font: var(--small-font-size);
+  margin-bottom: var(--mb-1);
+}
+/* 
+Navegação
+-------------------------------------------
+animação
+*/
+
+.containerIcons{
+  height: 100%;
+  background-color:#6F9B7A;
+  align-items:center;
+  flex-direction:column;
+padding-bottom: 60px;
+border-bottom: 3px solid black;
+}
+
+.icons{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.tituloIcones{
+  width: 100%;
+  font-size:20px;
+  margin-top:20px;
+  margin-bottom: 20px;
+}
+
+.textoIcones{
+  font-weight: 100;
+    font-size: 20px;
+}
+
+.icon-Itens{
+  height: 100%;
+  display: flex;
+  align-items:center ;
+  justify-content: center; 
+  flex-direction: column ;
+}
+
+.icon-Itens img{
+  background-color: white;
+  border-radius: 50%;
+  height: 100px;
+}
+.conteudoIcones{
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width:300px;
+  height: 200px;
+  padding: 20px;
+  background-color: #C4CFC4;
+  display: flex;
+  box-shadow: 0 2px 4px #4B6971;
+  transform: .3s;
+  border: 1px solid #4B6971;
+  flex-direction: column;
+  margin-top: 30px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.conteudoIcones:hover{
+  box-shadow: 0 4px 8px black;
+}
+
+.Registro button{
+padding: 10px;
+padding-left: 30px;
+padding-right: 30px;
+margin-left: 5px;
+border: 2px solid #d057e0;
+font-size: 15px;
+border-radius: 30px;
+background-color: #8390b3c2;
+cursor: pointer;
+transition: 2s;
+}
+
+button:hover{
+  opacity: 0.3;
+}
+.animacao {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-modal);
+}
+
+.PrimeiroQuadrado {
+  background-color: var(--corInicial);
+}
+
+.SegundoQuadrado {
+  background-color: var(--corInicial);
+  left: 33.3%;
+}
+
+.TerceiroQuadrado {
+  background-color: var(--corInicial);
+  left: 66.6%;
+}
+
+.logozinha{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media only screen and (max-width: 500px){
+  .ContainerTexto{
+    font-size: 30px;
+  }
+  .servicoCaixa{
+  height: 300px;
+  width: 300px;
+}
+.icons{
+  flex-direction: column;
+  }
+  .icon-Itens{
+    margin-bottom: 30px;
+  }
+  .servicosContainer{
+    flex-direction: column;
+    align-items: center;
+  
+  } 
+
+  footer{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  footer i {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+}
+
+
+@media only screen and (max-width: 600px){
+.icons{
+flex-direction: column;
+}
+.icon-Itens{
+  margin-bottom: 30px;
+}
+.servicosContainer{
+  flex-direction: column;
+  align-items: center;
+
+}
+.home{
+  display: flex;
+flex-direction: column-reverse;
+align-items: center;
+justify-content: center;
+}
+
+.Titulo{
+  font-size: 10px;
+}
+footer{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+footer i {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+}
+
+
+@media only screen and (max-width: 768px){
+  .icons{
+    flex-direction: column;
+  }
+  .icon-Itens{
+    margin-bottom: 30px;
+  }
+  .servicosContainer{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ContainerTexto{
+    font-size: 30px;
+  }
+  footer{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  footer i {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 992px){
+  .icons{
+    flex-direction: column;
+  }
+  .icon-Itens{
+    margin-bottom: 30px;
+  }
+  .servicosContainer{
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  .Titulo{
+    font-size: 30px;
+  }
+  footer{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  footer i {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 1200px){
+  .Titulo{
+    font-size: 50px;
+  }
+  .logozinha{
+    font-size: 40px;
+  }
+  .texto{
+    font-size: 30px;
+  }
+}
