@@ -102,7 +102,7 @@ function header() {
                 </a>
             </li>
             <li>
-                <a href="./Index.html">
+            <a href="../../index.html">
 
                     <!-- Botão de Sair  -->
                     <span class="icone"><i class="uil uil-signout"></i> </span>
