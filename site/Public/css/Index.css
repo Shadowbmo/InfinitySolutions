@@ -142,7 +142,6 @@ Menu
 
 .ContainerTexto {
   width: 50%;
-  margin-left: 30px;
 }
 
 /* 
@@ -325,6 +324,7 @@ border-bottom: 3px solid black;
 }
 
 .icon-Itens{
+  height: 100%;
   display: flex;
   align-items:center ;
   justify-content: center; 
@@ -358,6 +358,22 @@ border-bottom: 3px solid black;
   box-shadow: 0 4px 8px black;
 }
 
+.Registro button{
+padding: 10px;
+padding-left: 30px;
+padding-right: 30px;
+margin-left: 5px;
+border: 2px solid #d057e0;
+font-size: 15px;
+border-radius: 30px;
+background-color: #8390b3c2;
+cursor: pointer;
+transition: 2s;
+}
+
+button:hover{
+  opacity: 0.3;
+}
 .animacao {
   position: absolute;
   top: 0;
@@ -379,4 +395,158 @@ border-bottom: 3px solid black;
 .TerceiroQuadrado {
   background-color: var(--corInicial);
   left: 66.6%;
+}
+
+.logozinha{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media only screen and (max-width: 500px){
+  .ContainerTexto{
+    font-size: 30px;
+  }
+  .servicoCaixa{
+  height: 300px;
+  width: 300px;
+}
+.icons{
+  flex-direction: column;
+  }
+  .icon-Itens{
+    margin-bottom: 30px;
+  }
+  .servicosContainer{
+    flex-direction: column;
+    align-items: center;
+  
+  } 
+
+  footer{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  footer i {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+}
+
+
+@media only screen and (max-width: 600px){
+.icons{
+flex-direction: column;
+}
+.icon-Itens{
+  margin-bottom: 30px;
+}
+.servicosContainer{
+  flex-direction: column;
+  align-items: center;
+
+}
+.home{
+  display: flex;
+flex-direction: column-reverse;
+align-items: center;
+justify-content: center;
+}
+
+.Titulo{
+  font-size: 10px;
+}
+footer{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+footer i {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+}
+
+
+@media only screen and (max-width: 768px){
+  .icons{
+    flex-direction: column;
+  }
+  .icon-Itens{
+    margin-bottom: 30px;
+  }
+  .servicosContainer{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ContainerTexto{
+    font-size: 30px;
+  }
+  footer{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  footer i {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 992px){
+  .icons{
+    flex-direction: column;
+  }
+  .icon-Itens{
+    margin-bottom: 30px;
+  }
+  .servicosContainer{
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  .Titulo{
+    font-size: 30px;
+  }
+  footer{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  footer i {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 1200px){
+  .Titulo{
+    font-size: 50px;
+  }
+  .logozinha{
+    font-size: 40px;
+  }
+  .texto{
+    font-size: 30px;
+  }
 }

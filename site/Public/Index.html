@@ -36,8 +36,8 @@
     <main class="l-main bd-grid">
         <div class="home">
             <!-- Parte que tem o texto-->
-            <div class="ContainerTexto">
-                <span class="texto">Transformando desafios em possibilidades infinitas</span>
+            <div class="ContainerTexto" id="logozinha">
+                <span class="texto" id="">Transformando desafios em possibilidades infinitas</span>
                 <h1 class="Titulo">Inifinity Solutions</h1>
                 <span class="home__skill anime-text">Construindo soluções infinitas para o seu sucesso!</span>
                 <div>
@@ -46,8 +46,9 @@
             </div> <!--containerTexto-->
             <!-- Parte que tem a imagem e a logo -->
             <div class="ContainerImagem">
-                <canvas id="canvas" width="600" height="500"></canvas>
+                <img src="./assets/img/Self checkout-pana.svg" alt="">
             </div>
+
         </div>
     </main>
 
@@ -60,7 +61,7 @@
     <!-- ----------------------------------Serviços-------------------------------------- -->
 
     <section class="services">
-        <div data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+        <div>
             <h2 class="sectionTitulo">Qual nosso objetivo ?</h2>
             <span class="sectionSubtitulo">Temos a função de ajudar a ter uma gestão melhor em totems, auxiliando a
                 manuntenção</span>
@@ -74,7 +75,7 @@
     <div class="servicosContainer grid">
         <!-- ----------------------------------Caixa 1-------------------------------------- -->
 
-        <div class="servicoCaixa" data-aos="flip-left">
+        <div class="servicoCaixa">
             <div class="imagem">
                 <img src="./assets/img/Monitoramento.png" alt="">
             </div>
@@ -87,7 +88,7 @@
 
         <!-- ----------------------------------Caixa 2-------------------------------------- -->
 
-        <div class="servicoCaixa" data-aos="flip-left">
+        <div class="servicoCaixa">
             <div class="imagem">
                 <img src="./assets/img/Notificacao.png">
             </div>
@@ -100,7 +101,7 @@
 
         <!-- ----------------------------------Caixa 3-------------------------------------- -->
 
-        <div class="servicoCaixa" data-aos="flip-left">
+        <div class="servicoCaixa">
             <div class="imagem">
                 <img src="./assets/img/Manuntencao.png" alt="">
             </div>
@@ -124,7 +125,7 @@
     <div class="containerIcons">
 
         <div class="icons">
-            <div data-aos="zoom-out-right">
+            <div>
                 <div class="icon-Itens">
                     <img src="./assets/img/Numero1-removebg-preview.png" alt="" srcset="">
                     <div class="conteudoIcones">
@@ -133,7 +134,7 @@
                     </div>
                 </div>
             </div>
-            <div data-aos="zoom-out-up">
+            <div>
                 <div class="icon-Itens">
                     <img src="./assets/img/numero2-removebg-preview.png" alt="">
                     <div class="conteudoIcones">
@@ -142,7 +143,7 @@
                     </div>
                 </div>
             </div>
-            <div data-aos="zoom-out-left">
+            <div>
                 <div class="icon-Itens">
                     <img src="./assets/img/numero3-removebg-preview.png" alt="">
                     <div class="conteudoIcones">
@@ -168,9 +169,7 @@
                     <span class="textoTell">(11)91234-5678</span>
                 </div>
             </div>
-            <div class="imgFaleConosco">
-                <img src="./assets/img/Monitoring Solution (500 × 250 px).svg" alt="">
-            </div>
+    
         </div>
 
         <div class="containerFooter">
@@ -194,4 +193,25 @@
 
 <script>
     AOS.init();
+
+    
+  function ajustarLayout() {
+    if (window.innerWidth <= 1200) {
+        logozinha.innerHTML = `
+         <h1 class= "logozinha"> Infinity Solutions </h1>
+        `
+    } else {
+     logozinha.innerHTML = `
+     <span class="texto">Transformando desafios em possibilidades infinitas</span>
+                <h1 class="Titulo">Inifinity Solutions</h1>
+                <span class="home__skill anime-text">Construindo soluções infinitas para o seu sucesso!</span>
+                <div>
+                    <a href="#" class="Botao">Saiba mais</a>
+                </div>
+     `
+    }
+  }
+
+  window.addEventListener("resize", ajustarLayout);
+  ajustarLayout(); // Chamada inicial para ajustar o layout na carga da página
 </script>

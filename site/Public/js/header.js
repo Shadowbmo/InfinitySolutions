@@ -8,42 +8,13 @@ function header() {
             </a>
 
             <div class="Registro">
-                Login
-                register
+               <button> Logar </button>
+               <button> Registrar </button>
 
             </div>
 
         </nav>
     </header>
-    `
-
-    menuzinho.innerHTML = `
-    <ul class=" menuLista">
-    <!-- Icone para home -->
-    <li class="menuItems">
-        <a href="#" class="iconesHeader">
-            <i class="uil uil-home"></i>
-        </a>
-    </li>
-    <!-- icone para o globo -->
-    <li class="menuItems">
-        <a href="#" class="iconesHeader">
-            <i class="uil uil-globe"></i>
-        </a>
-    </li>
-    <!-- icone para modo claro -->
-    <li class="menuItems">
-        <a href="#" class="iconesHeader">
-            <i class="uil uil-sun"></i>
-        </a>
-    </li>
-    <!-- icone para modo escuro -->
-    <li class="menuItems">
-        <a href="#" class="iconesHeader">
-            <i class="uil uil-moon"></i>
-        </a>
-    </li>
-</ul>
     `
 
 }
