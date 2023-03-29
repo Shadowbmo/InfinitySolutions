@@ -50,117 +50,43 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-.titulo_add_funcionario{
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-  font-size: 35px;
-}
-
-.containerConfig a { 
-    color: inherit; 
-    text-decoration: none;
-} 
-
 .titulo_funcionario{
   display: flex;
   color: rgb(63, 114, 207);;
   justify-content: center;
   margin-top: 10px;
   font-size: 35px;
+  /* Titulo da tela - (Filial)  */
 }
 
 .lista_funcionario{
   display: flex;
   flex-direction: column;
   margin-left:50px;
-  width:90%;
+  width: 90%;
   border: 1px solid rgb(63, 114, 207);;
   border-radius: 5px;
-}
-
-
-.div_lista_armazem{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.coluna_funcionario{
-    display: flex;
-    list-style: none;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-.container_titulo_add_funcionario{
-    border: 1px solid rgb(63, 114, 207);;
-    width:100%;
-    font-size:25px;
-    display: flex;
-    justify-content: center;
-    
-}
-
-.formulario_add_funcionario{
-    display: flex;
-    flex-direction: column;
-    
-}
-
-.input{
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    width:90%;
-    margin-top:5px;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid rgb(63, 114, 207);;
+  /* Titulo da tela */
 }
 
 .ml{
     margin-left: 10px;
+    background-color: red;
 }
-
-.margin{
-    margin-left: 10px ;
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
-
-.lista{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    list-style: none;
-}
-
-
-.dialog {
-    background-color: var(--brancopuro);
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    height: 100%;
-    border: 1px solid #0cc96d;
-    outline: none;
-  }
   
-
-  dialog::-webkit-inner-spin-button{
-    -webkit-appearance: none;
-  }
   .header {
     background-color: var(--adicionar);
     display: flex;
     justify-content: center;
     align-items: center; 
+    /* Cabecalho do cadastro */
   }
 
   .header img {
     display: flex;
     justify-content: flex-end;
     height: 3vh;
+    /* Logo da tela */
   }
   
   
@@ -172,12 +98,14 @@ body{
     cursor: pointer;
     margin-right: 5px;
     width: 10%;
+    /* X - para sair */
 }
 
   .header {
     display: flex;
     justify-content: center;
     flex-direction: row-reverse;
+    /* Alinhamento para saida do x */
   }
   
   .header i:hover{
@@ -190,26 +118,32 @@ body{
     justify-content: center;
     flex-direction: column-reverse;
     width: 100%;
+    /* Alinhamento da header */
 }
 
 .alinhamento img {
   height: 30px;
+  /* Alinhamento da imagem */
 }
   
   .form {
-    padding: 30px 40px; 
-    height: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 150vh;
+    /* Caixa da tela */
   }
   
   .containerInput {
     margin-bottom: 10px;
     padding-bottom: 20px;
     position: relative;
+    /* Caixas das inputs */
   }
   
   .containerInput label {
     display: inline-block;
     margin-bottom: 5px;
+    /* labal da inputs */
   }
   
   .containerInput input {
@@ -222,18 +156,11 @@ body{
     padding: 10px;
     background-color: transparent;
     width: 100%;
+    /* Input */
   }
-
-  
-  .containerInput i {
-    position: absolute;
-    top: 40px;
-    right: 10px;
-  }
-  
  
   .form button {
-    background-color: rgb(63, 114, 207);;
+    background-color: rgb(23, 228, 91);;
     border-radius: 4px;
     color: var(--brancopuro);
     display: block;
@@ -242,25 +169,16 @@ body{
     padding: 10px;
     margin-top: 20px;
     width: 100%;
-      cursor: pointer;
+    cursor: pointer;
   }
   
   button:hover{
   opacity: 0.5;
   }
 
-  .dialogzinho{
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    position: absolute;
-    align-items: center;
-}
-
-
 .dialogzinho2{
-    width: 100%;
-    position: absolute;
+    width: 100vw;
+    height: 130vh;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -268,10 +186,12 @@ body{
 }
 
 .dialog {
+ display: flex;
+ flex-direction: column;
   background-color: var(--FundoGrafico);
   border-radius: 5px;
-  width: 400px;
-  height: 100%;
+  width: 30%;
+  height: 130%;
 }
 
 .barra-de-cima {
@@ -288,19 +208,10 @@ body{
 }
 
 .form {
+  display: flex;
+  flex-direction: column;  
   padding: 30px 40px; 
-  height: 100%;
-}
-
-.containerInput {
-  margin-bottom: 10px;
-  padding-bottom: 3px;
-  position: relative;
-}
-
-.containerInput label {
-  display: inline-block;
-  margin-bottom: 5px;
+  height: 150%;
 }
 
 .containerInput input {
@@ -315,12 +226,6 @@ body{
   width: 100%;
 }
 
-.containerInput i {
-  position: absolute;
-  top: 40px;
-  right: 10px;
-}
-
 .input {
   outline: 0;
 }
@@ -328,32 +233,6 @@ body{
 
 .containerInput select{
   width: 100%;
-}
-
-.cep-cidade{
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-}
-
-.cep-cidade input{
-  width: 90%;
-  
-}
-
-.form button {
-  background-color: #0cc96d;
-  border-radius: 4px;
-  font-family: inherit;
-  font-size: 16px;
-  padding: 10px;
-  margin-top: 20px;
-  width: 100%;
-  cursor: pointer;
-}
-
-button:hover{
-opacity: 0.5;
 }
 
 
@@ -381,52 +260,11 @@ opacity: 0.5;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   }
 
-.listaConteudo li {
-  width: 90%;
-  display: flex;
-  color: rgb(63, 114, 207);
-  background: var(--brancopuro);
-  border-radius: 8px;
-  margin-top: 20px;
-  overflow: hidden;
-  padding: 20px;  width: 90%;
-  border: 1px solid rgb(63, 114, 207);;
-  position: relative;
-}
-.avatar {
-  background: var(--brancopuro);
-  border-radius: 4px;
-  width: 180px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.avatar img {
-  width: 100%;
-  height: 100%;
-}
-
-.descrisao {
-  height: 80px;
-  margin-left: 20px;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: flex-start;
-  display: flex;
-flex-direction: column;
-}
-
-.descrisao span{
-  margin-top: 5px;
-  width: 80%;
-}
  button{
   justify-content: center;
   align-items: center;
   display: flex;
+  /* Estilização do botão */
 }
 
 .cadastrar{
@@ -442,6 +280,6 @@ flex-direction: column;
   background-color: #1f29b3;
   padding: 3px;
   padding-right: 30px;
-  border: 1px solid #1a2297;
+  border: 1px solid #024796;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }

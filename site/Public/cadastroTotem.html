@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Totem</title>
+    <title>Cadastro Totens</title>
 
-    <!-- Linkando O  CSS da tela de dashboard (grafico)-->
     <link rel="stylesheet" href="./css/estilo_Tela_Inicial_Do_Grafico.css">
 
-    <link rel="stylesheet" href="./css/cadastro_funcionario.css">
+    <link rel="stylesheet" href="./css/cadastroTotem.css">
     <link rel="stylesheet" href="./css/paginaInicialGeral.css">
     <!-- linkando os icones-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -20,99 +18,95 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="shortcut icon" href="./assets/img/favicon-32x32.png" type="image/x-icon" />
 </head>
+    <body onload="atualizarFuncionario()">
 
-<body onload="atualizarFuncionario()">
-
-    <div id="bodyzinho">
-
-    </div>
-
-
-<!-- **************************************************************************************** -->
-
-<!--Menu-->
-
-<div class="menu">
-
-    <!-- Parte de Cima que contem A logo de Melvs e O botão de ocutar o menu-->
-    <div class="barra-de-cima">
-
-        <!-- Div Que tem o icone de Menu-->
-        <div class="toggle">
-
-            <!-- Imagem do ICONE DE MENU -->
-            <i class="uil uil-list-ul"></i>
-
+        <div id="bodyzinho">
+    
         </div>
-
-        <!-- Div que contem A LOGO DA MELVIS -->
-        <div>
-            <!-- Imagem da logo da MELVS VERDE -->
-            <img src="./assets/img/Monitoring Solution (500 × 250 px).svg" alt="">
-
-        </div>
-
-        <div>
-
-        </div>
-
-    </div>
-
-
+    
+    
     <!-- **************************************************************************************** -->
-    <div class="add_funcionario">
-        <div class="lista_funcionario">
-            <h1 class="titulo_funcionario">Totem</h1>
-            <dialog class="dialogzinho">
-
-                <div class="dialog">
-                    <div class="header">
-                        <i class="uil uil-times-circle" onclick='fechar()'></i>
-                        <div class="alinhamento">
-                            <span>Infinity Solutions</span>
-                            <img src="./assets/img/Monitoring Solution (500 × 250 px).svg">
+    
+    <!--Menu-->
+    
+    <div class="menu">
+    
+        <!-- Parte de Cima que contem A logo de Melvs e O botão de ocutar o menu-->
+        <div class="barra-de-cima">
+    
+            <!-- Div Que tem o icone de Menu-->
+            <div class="toggle">
+    
+                <!-- Imagem do ICONE DE MENU -->
+                <i class="uil uil-list-ul"></i>
+    
+            </div>
+    
+            <!-- Div que contem A LOGO DA MELVIS -->
+            <div>
+                <!-- Imagem da logo da MELVS VERDE -->
+                <img src="./assets/img/Monitoring Solution (500 × 250 px).svg" alt="">
+    
+            </div>
+    
+            <div>
+    
+            </div>
+    
+        </div>
+    
+    
+        <!-- **************************************************************************************** -->
+        <div class="add_funcionario">
+            <div class="lista_funcionario">
+                <h1 class="titulo_funcionario">Totens</h1>
+                <dialog class="dialogzinho">
+    
+                    <div class="dialog">
+                        <div class="header">
+                            <i class="uil uil-times-circle" onclick='fechar()'></i>
+                            <div class="alinhamento">
+                                <span>Infinity Solutions</span>
+                                <img src="./assets/img/Monitoring Solution (500 × 250 px).svg">
+                            </div>
+                            <i></i>
                         </div>
-                        <i></i>
-                    </div>
-                    <div id="form" class="form">
-                        <div class="containerInput">
-                            <input class="input margin" placeholder="Número de identificação" id="input_numero_identificacao">
-                        </div>
-                        <div class="containerInput">
-                            <input class="input margin" placeholder="Data de fabricação" id="input_data_fabricacao">
-                        </div>
-                        <div class="containerInput">
-                            <input class="input margin" type="text" placeholder="Marca"
-                                id="input_marca"> <br>
-                        </div>
-                        <div class="containerInput">
-                            <input class="input margin" placeholder="Sistema Operacional" id="input_so_maquina" type="text"> <br>
-                        </div>
-                            <!-- Container input-->
-                        <button onclick="cadastrarTotem()">Adicionar Totem</button>
-                    </div> <!-- formulario -->
-                </div> <!-- div - menu -->
-            </dialog>
-
+                        <div id="form" class="form">
+                            <div class="containerInput">
+                                <input class="input margin" placeholder="Número de Indentificação" id="input_nome_funcionario">
+                            </div>
+                            <div class="containerInput">
+                                <input class="input margin" placeholder="Data de Fabricação" id="input_email_funcionario" type="datetime">
+                            </div>
+                            <div class="containerInput">
+                                <input class="input margin" placeholder="Marca" id="input_marca"> <br>
+                                <i class="fas fa-check-circle"></i>
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div class="containerInput">
+                                <input class="input margin" placeholder="Sistema Operacional" id="input_so">
+                            </div>
+                            <div class="containerInput">
+                            </div><!-- Container input-->
+                            <button onclick="cadastrarUsuario()">Cadastrar Totem</button>
+                        </div> <!-- formulario -->
+                    </div> <!-- div - menu -->
+                </dialog>
+    
+            </div>
+        </div>
+    
+        <div class="listaConteudo">
+            <div class="cadastrar">
+                <button onclick="modal()"><i class="uil uil-user-plus"></i> Cadastrar Totem</button>
+            </div>
+            <ul id="listaEmpresa">
+            </ul>
         </div>
     </div>
-
-    <div class="listaConteudo">
-        <div class="cadastrar">
-            <button onclick="modal()"><i class="uil uil-user-plus"></i> Cadastrar Totem</button>
-        </div>
-        <ul id="listaEmpresa">
-        </ul>
-    </div>
-</div>
-
 </body>
 </html>
 
-<!-- SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  SCRIPT  -->
-
-
-<!-- MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU MENU  -->
 <script src="./js/paginaInicialGeral.js">
 
 </script>
