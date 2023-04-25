@@ -1,0 +1,140 @@
+:root {
+    --BrancoMelvs: #eff0e8d5;
+    --VerdeClaro: #11C76F;
+    --HoverMenu: rgba(23, 233, 132, 0.701);
+    --TextoPreto: #000;
+    --TextoVerdeEscuro: #054A29;
+    --VerdeEscuro: #054A29;
+    --FundoGrafico: #eff0e8d5;
+    --Sombra: rgba(0, 0, 0, 0.08);
+    --ideal: #054a29;
+    --critico: #ff0000;
+    --atencao: #bbb502;
+    --TextoVerdeEscuro2: #054A29;
+    --adicionar: #D4FADE;
+    --zuzu: rgb(63, 114, 207);
+    --texto: #428bca;
+
+}
+
+.containerGrafico {
+    height: 85vh;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 1rem;
+}
+
+.containerLadoEsquerdo {
+    width: 60%;
+    display: flex;
+    height: 100%;
+    justify-content: start;
+    flex-direction: column;
+
+}
+
+.containerParteDeBaixo {
+    height: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.containerParteDeCima {
+    height: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    gap: 1rem;
+}
+
+.containerLadoDireito {
+    width: 40%;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+}
+
+.containerLadoDireito .card {
+    height: 100%;
+    width: 100%;
+    border-radius: 30px;
+    border: 1px solid var(--texto);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 2px -7px 57px -26px rgba(0, 0, 0, 0.35);
+    -webkit-box-shadow: 2px -7px 57px -26px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 2px -7px 57px -26px rgba(0, 0, 0, 0.35);
+    background-color: #EFF4CD;
+    gap: 1rem;
+}
+
+.graficoDeLinha {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.grafico {
+    height: 82%;
+    box-shadow: 2px -7px 57px -26px rgba(0, 0, 0, 0.35);
+    -webkit-box-shadow: 2px -7px 57px -26px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 2px -7px 57px -26px rgba(0, 0, 0, 0.35);
+    padding: 3px;
+    background-color: #EFF4CD;
+}
+.containerLadoEsquerdo .grafico{
+    border:1px solid var(--texto);
+}
+
+.containerParteDeCima .grafico {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+}
+.titulo{
+    font-weight: bold;
+    color:#3D4856;
+}
+.Titulo{
+    font-weight: bold;
+    color:#3D4856;
+    width: 100%;
+    align-items: center;
+    justify-content: center ;
+    display: flex;
+}
+
+.subtitulo{
+    color: #3D4856;
+}
+
+.containerParteDeBaixo .subtitulo2{
+color: green;   
+}
+.card:hover{
+    opacity: 0.6;
+}
+
+#GraficoDeBarraMensal {
+    width: 100%;
+    height: 100%;
+}

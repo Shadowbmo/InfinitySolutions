@@ -30,7 +30,7 @@
   </div>
   <!--Graficos-->
   <section>
-    <div class="body" id="cardContainer">
+    <div class="body">
       <!-- Div que engloba todas as divs -->
       <div class="container"> <!-- Div que tem o conteudo em si -->
         <div class="conteudo">
@@ -172,81 +172,29 @@
 <script src="./js/headerOficial.js">
 </script>
 <script>
-  var cnpj = sessionStorage.ID_USUARIO;
-  let id = cnpj;
-  id = id.replace(/\.|\-|\//g, '');
+    function atualizarFuncionario() {
+      var id = idUsuario; 
+      fetch(`/usuarios/listarTodasFiliais/${idEmpresa}`).then(function (resposta) {
+          if (resposta.ok) {
+              if (resposta.status == 204) {
+                  throw "Nenhum resultado encontrado!!";
+              }
 
-  function listar() {
+              resposta.json().then(function (resposta) {
+                  console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-    fetch(`/usuarios/listarTodasFiliais/${id}`).then(function (resposta) {
-      if (resposta.ok) {
-        if (resposta.status == 204) {
-          throw "Nenhum resultado encontrado!!";
-        }
+                  for (let i = 0; i < resposta.length; i++) {
+                      var publicacao = resposta[i];
+                      console.log(resposta[i])
+ 
+                  }
 
-        resposta.json().then(function (resposta) {
-          console.log("Dados recebidos: ", JSON.stringify(resposta));
-          cardContainer.innerHTML = "";
-          for (let i = 0; i < resposta.length; i++) {
-            var publicacao = resposta[i];
-            cardContainer.innerHTML += `
-                      <div class="container"> <!-- Div que tem o conteudo em si -->
-        <div class="conteudo">
-
-          <!-- Div que tem todo o quadrado ou cada card (ou cada post-it) -->
-          <div class="card">
-
-            <!-- Counteudo que tem em cada card (ou post-it)-->
-            <div class="conteudo-card">
-
-              <!-- Div que contem a imagem (aquela bola)-->
-              <div class="imagem">
-
-                <!-- imagem que vai ficar no quadrado do card-->
-                <img src="./assets/icones/iconeSuperMercadoCritico.svg">
-
-              </div>
-
-              <!-- Div que contem o nome do armazem -->
-              <div class="nome-do-armazem-e-sua-descrisao">
-                <span class="nome-do-armazem">${publicacao.Nome}</span>
-                <span class="descrisao-do-armazem"> ${publicacao.Cidade}</span>
-              </div>
-
-              <!-- Div que contem o status do armazem -->
-              <div class="status-armazem1">
-                <span class="">Problema</span>
-              </div>
-
-              <!-- Div que tem o botão -->
-              <div class="botao">
-                <a href="#"> <button onclick="verificar('${publicacao.idEmpresa}')"> Visualizar Supermercado </button></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-                      
-                      `
-
+              });
+          } else {
+              throw ('Houve um erro na API!');
           }
-
-        });
-      } else {
-        throw ('Houve um erro na API!');
-      }
-    }).catch(function (resposta) {
-      console.error(resposta);
-    });
+      }).catch(function (resposta) {
+          console.error(resposta);
+      });
   }
-
-
-  listar();
-
-
-  function verificar(idFilial) {
-    sessionStorage.FILIAL = idFilial;
-    window.location = "./telaDoGraficoGerente.html"
-  }
-
 </script>

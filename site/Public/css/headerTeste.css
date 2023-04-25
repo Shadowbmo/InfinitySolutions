@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--BrancoMelvs);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: 'Sen', sans-serif;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+:root{
+  --BackgroundLinear: linear-gradient(to bottom, #00ef7e, #006986, #01118a);
+  --botaoHeader:#006986;
+  --botaoHeaderHover: #509CBB;
+    --brancopuro: #FFF;
+    --BrancoMelvs: #F0F2E8;
+    --VerdeClaro: #11C76F;
+    --HoverMenu: rgba(23, 233, 132, 0.701);
+    --TextoPreto: #006986;
+    --TextoVerdeEscuro: #ebe4e4;
+    --VerdeEscuro: #006986;
+    --FundoGrafico: #eff0e8d5;
+    --Sombra: rgba(0, 0, 0, 0.08);
+    --TextoVerdeClaro: #11C76F;
+    --Botao: #D9D9D9;
+    --critico: #ff0000;
+    --ok: #11C76F;
+    --atencao:  #bbb502;
+    --adicionar:#006880;
+}
+
+/* Estilo do header lateral */
+header {
+  z-index: 300;
+  position: fixed;
+  /* fixa o header na tela */
+  top: 0;
+  height: 100vh;
+  /* altura igual à altura da janela */
+  background:var(--BackgroundLinear);
+  width: 300px;
+}
+
+header .botaoHeader img {
+  height: 30px;
+  margin-left: 10px;
+  color: white;
+  
+}
+
+header .botaoHeader i{
+  height: 30px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+}
+
+
+.headerTopo {
+  display: flex;
+  height: 10%;
+  font-size: 15px !important;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+/* Estilo dos botões */
+.botaoHeader {
+  width: 100%;
+  /* ocupa toda a largura do header lateral */
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  background-color:var(--botaoHeader) ;
+  z-index: 200;
+}
+
+.botaoHeader:hover{
+  background-color: var(--botaoHeaderHover);
+  z-index: 220;
+}
+
+.botaoHeader button {
+  display: block;
+  /* faz o botão ocupar toda a largura da li */
+  width: 90%;
+  padding: 10px;
+  background-color:transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 18px;
+}
+
+.botao
+
+.fecharMenu {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+.fecharMenu2 {
+width: 100%;
+display: flex;
+justify-content: center;
+}
+
+.menu{
+  font-size: 30px;
+  cursor: pointer;
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+  }
+
+.headerTopzaum{
+  display: flex;
+  width: 100%;
+  padding: 10px;
+}
+
+.logo{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 90%;  
+}
+.logo img{
+  height: 60px;
+  width: 90px;
+}

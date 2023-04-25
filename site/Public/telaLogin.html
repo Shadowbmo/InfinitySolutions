@@ -38,26 +38,26 @@
             <div class="containerEsquerda" id="containeES">
                 <h2 class="titulo titulo-direita">Entre Agora mesmo</h2>
                 <div class="formulario">
-                    <!-- NICK NICK NICK NICK NICK NICK NICK NICK NICK NICK NICK NICK NICK NICK NICK  -->
+                    <!-- EMAIL CPF OU CNPJ EMAIL CPF OU CNPJEMAIL CPF OU CNPJ EMAIL CPF OU CNPJEMAIL CPF OU CNPJ  -->
                     <div class="inputs">
                         <i class="far fa-envelope icones"></i>
-                        <input type="email" placeholder="Email, CPF ou CNPJ" id="input_email_login">
+                        <input type="email" placeholder="Email, CPF ou CNPJ" id="inputEmailLogin">
                     </div>
 
                     <!-- SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA -->
                     <div class="inputs">
                         <i class="fas fa-lock icones"></i>
-                        <input type="password" placeholder="Password" id="input_senha_login">
+                        <input type="password" placeholder="Senha" id="inputSenhaLogin">
                     </div>
 
                     <!-- BUTAO CADASTRAR BUTAO CADASTRAR BUTAO CADASTRAR BUTAO CADASTRAR BUTAO CADASTRAR -->
                     <div class="botao">
                     <a href="#" class="button" onclick="entrar()">
-                        <div class="button__line" onclick="entrar()"></div>
-                        <div class="button__line" onclick="entrar()"></div>
-                        <span class="button__text" onclick="entrar()">Logar</span>
-                        <div class="button__drow1" onclick="entrar()"></div>
-                        <div class="button__drow2" onclick="entrar()"></div>
+                        <div class="button__line" onclick=""></div>
+                        <div class="button__line" onclick=""></div>
+                        <span class="button__text" onclick="">Logar</span>
+                        <div class="button__drow1" onclick=""></div>
+                        <div class="button__drow2" onclick=""></div>
                       </a>
                     </div>
                     <span id="span_login">
@@ -94,7 +94,7 @@
                         <!-- NOME FANTASIA NOME FANTASIA NOME FANTASIA NOME FANTASIA NOME FANTASIA NOME FANTASIA NOME FANTASIA NOME FANTASIA  -->
                         <div class="inputs">
                             <i class="far fa-user icones"></i>
-                            <input placeholder="Nome Fantasia" id="input_nome_fantasia">
+                            <input placeholder="Nome Fantasia" id="inputNomeFantasia">
                         </div>
                         <span id="span_validacao_nome_fantasia">
                         </span>
@@ -102,7 +102,7 @@
                         <!-- CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ CNPJ -->
                         <div class="inputs">
                             <i class="far fa-user icones"></i>
-                            <input placeholder="CNPJ" id="input_nome_cnpj">
+                            <input placeholder="CNPJ" id="inputCnpjRegistro" onkeyup="mascaraCNPJ()" maxlength="18">
                         </div>
                         <span id="span_validacao_cnpj">
                         </span>
@@ -110,7 +110,7 @@
                         <!-- EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL EMAIL  -->
                         <div class="inputs">
                             <i class="far fa-envelope icones"></i>
-                            <input type="email" placeholder="Email" id="input_email">
+                            <input type="email" placeholder="Email" id="inputEmailRegistro">
                         </div>
                         <span id="span_validacao_email">
                         </span>
@@ -118,7 +118,7 @@
                         <!-- SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA SENHA -->
                         <div class="inputs">
                             <i class="fas fa-lock icones"></i>
-                            <input type="password" placeholder="Senha" id="input_senha">
+                            <input type="password" placeholder="Senha" id="inputSenhaRegistro">
                         </div>
                         <span id="span_validacao_senha">
                         </span>
@@ -126,20 +126,20 @@
                         <!-- CONFIRMA SENHA CONFIRMA SENHA CONFIRMA SENHA CONFIRMA SENHA CONFIRMA SENHA CONFIRMA SENHA CONFIRMA SENHA CONFIRMA SENHA  -->
                         <div class="inputs">
                             <i class="fas fa-lock icones"></i>
-                            <input type="password" placeholder="Confirme a senha" id="confirmacao_senha_input">
+                            <input type="password" placeholder="Confirme a senha" id="inputConfirmacaoDeSenha">
                             <span id="span_validacao_confirmacao_de_senha">
                         </div>
                         </span>
                     </div>
                     <div class="botaoCadastrar">
-                     <a href="#" class="button" onclick="validar()">
-                        <div class="button__line" onclick="entrar()"></div>
-                        <div class="button__line" onclick="entrar()"></div>
-                        <span class="button__text" onclick="entrar()">
+                     <a href="#" class="button" onclick="cadastrar()">
+                        <div class="button__line" onclick=""></div>
+                        <div class="button__line" onclick=""></div>
+                        <span class="button__text" onclick="">
                             Cadastrar
                         </span>
-                        <div class="button__drow1" onclick="entrar()"></div>
-                        <div class="button__drow2" onclick="entrar()"></div>
+                        <div class="button__drow1" onclick=""></div>
+                        <div class="button__drow2" onclick=""></div>
                       </a>
                     </div>
                     <!-- BUTAO CADASTRAR BUTAO CADASTRAR BUTAO CADASTRAR BUTAO CADASTRAR BUTAO CADASTRAR -->
@@ -161,7 +161,117 @@
 </html>
 
 <script>
-    function entrar(){
-        window.location.href = "./paginaInicial.html";
+      function entrar() {
+
+        var emailVar = inputEmailLogin.value;
+        var senhaVar = inputSenhaLogin.value;
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    console.log(json)
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.Nome;
+                    sessionStorage.ID_USUARIO = json.idEmpresa;
+
+                    setTimeout(function () {
+                        window.location = "./paginaInicial.html";
+                    },10); 
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    let cnpjzinho = 0;
+  function mascaraCNPJ() {
+    let valorCNPJ =  inputCnpjRegistro.value;
+    valorCNPJ = valorCNPJ.replace(/\D/g, ''); // Remove todos os caracteres não numéricos do valorCNPJ
+    valorCNPJ = valorCNPJ.replace(/(\d{2})(\d)/, '$1.$2'); // Adiciona um ponto após os primeiros 2 dígitos
+    valorCNPJ = valorCNPJ.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona um ponto após os próximos 3 dígitos
+    valorCNPJ = valorCNPJ.replace(/(\d{3})(\d)/, '$1/$2'); // Adiciona uma barra após os próximos 3 dígitos
+    valorCNPJ = valorCNPJ.replace(/(\d{4})(\d)/, '$1-$2'); // Adiciona um hífen após os últimos 4 dígitos
+
+    inputCnpjRegistro.value  = valorCNPJ;
+    cnpjzinho = valorCNPJ;
+  }
+
+    function cadastrar() {
+        var nomeVar = inputNomeFantasia.value;
+        var cnpjVar = inputCnpjRegistro.value;
+        var emailVar = inputEmailRegistro.value;
+        var senhaVar = inputSenhaRegistro.value;
+        var confirmacaoSenhaVar = inputConfirmacaoDeSenha
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                cnpjServer: cnpjVar 
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                console.log(resposta);
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = emailVar;
+                    sessionStorage.NOME_USUARIO = nomeVar;
+                    sessionStorage.ID_USUARIO = cnpjVar;
+
+                     window.location = "paginaInicial.html";
+                });
+                
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
     }
 </script>

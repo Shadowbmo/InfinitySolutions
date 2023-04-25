@@ -1,4 +1,4 @@
-// process.env.AMBIENTE_PROCESSO = "desenvolvimento";
+//process.env.AMBIENTE_PROCESSO = "desenvolvimento";
 process.env.AMBIENTE_PROCESSO = "producao";
 
 var express = require("express");
@@ -9,7 +9,10 @@ var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 8080;
 var app = express();
 
 var indexRouter = require("./src/routes/index");
-// var usuarioRouter = require("./src/routes/usuarios");
+var usuarioRouter = require("./src/routes/usuarios");
+var totemRouter = require("./src/routes/totem");
+var filialRouter = require("./src/routes/filial");
+var responsavelRouter = require("./src/routes/responsavel");
 // var avisosRouter = require("./src/routes/avisos");
 // var medidasRouter = require("./src/routes/medidas");
 
@@ -20,7 +23,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 app.use("/", indexRouter);
-// app.use("/usuarios", usuarioRouter);
+app.use("/totem", totemRouter);
+app.use("/responsavel", responsavelRouter);
+app.use("/filial", filialRouter);
+app.use("/usuarios", usuarioRouter);
+
 // app.use("/avisos", avisosRouter);
 // app.use("/medidas", medidasRouter)
 

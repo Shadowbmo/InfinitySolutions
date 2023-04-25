@@ -1,0 +1,63 @@
+
+a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(63, 114, 207);
+    ;
+  }
+  
+  .dialog {
+    background-color: var(--brancopuro);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    border: 1px solid #0cc96d;
+    outline: none;
+  }
+  
+  button:hover {
+    opacity: 0.5;
+  }
+  
+  .header i:hover {
+    opacity: 0.5;
+  }
+  
+  .containerInput {
+    margin-bottom: 10px;
+    padding-bottom: 3px;
+    position: relative;
+  }
+  
+  .containerInput input {
+    border: 2px solid var(--FundoGrafico);
+    border-radius: 4px;
+    display: block;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid rgb(63, 114, 207);
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .input {
+    outline: 0;
+  }
+  
+  .containerInput select {
+    width: 100%;
+  }
+  

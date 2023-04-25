@@ -39,7 +39,7 @@ input {
   z-index: 5;
 }
 
-form {
+main {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,12 +51,12 @@ form {
   grid-row: 1 / 2;
 }
 
-form.sign-up-form {
+main.sign-up-form {
   opacity: 0;
   z-index: 1;
 }
 
-form.sign-in-form {
+main.sign-in-form {
   z-index: 2;
 }
 
@@ -250,12 +250,12 @@ form.sign-in-form {
   left: 25%;
 }
 
-.container.sign-up-mode form.sign-up-form {
+.container.sign-up-mode main.sign-up-form {
   opacity: 1;
   z-index: 2;
 }
 
-.container.sign-up-mode form.sign-in-form {
+.container.sign-up-mode main.sign-in-form {
   opacity: 0;
   z-index: 1;
 }
@@ -377,7 +377,7 @@ form.sign-in-form {
 }
 
 @media (max-width: 740px) {
-  form {
+  main {
     padding: 0 1.5rem;
   }
 
