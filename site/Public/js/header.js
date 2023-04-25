@@ -8,12 +8,12 @@ function header() {
             </a>
 
             <div class="Registro">
-            <a href="./site/Public/telaLogin.html">
+            <a href="./telaLogin.html">
             
             <button> Logar </button>
             </a>
 
-            <a href="./site/Public/telaLogin.html">
+            <a href="./telaLogin.html">
             <button> Registrar </button>
             
             </a>

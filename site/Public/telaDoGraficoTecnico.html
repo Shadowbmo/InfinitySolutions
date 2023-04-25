@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/headerTeste.css"">
+      <!-- Linkando O  CSS da tela de dashboard (grafico)-->      
+      <!-- linkando os icones-->
+      <link rel=" stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="./css/telaDeGraficoTecnico.css">
+  <!-- linkando os icones-->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+  <!-- Linkando o chat js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <script src="../dist/gauge.min.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <title>Document</title>
+</head>
+;
+
+<body>
+  <!-- Header lateral -->
+  <div id="header" class="header">
+  </div>
+  <!-- Header Superior -->
+  <div class="headerTopzaum">
+    <div class="menu" onclick="menu()">  
+      <i class="uil uil-list-ul"></i>
+    </div>
+  
+    <div class="logo">
+      <img src="./assets/img/Monitoring Solution (500 × 250 px).svg" alt="">
+    </div>
+    <div>
+      Paremetrizar
+    </div>
+  </div>
+  <!--Graficos-->
+  <div class="containerGrafico">
+    <div class="containerLadoEsquerdo">
+      <div class="grafico">
+       <span class="Titulo">
+        Quantidade de reinicializações
+       </span> 
+        <canvas id="myChart">
+        </canvas>
+      </div>
+    </div>
+    <div class="containerLadoDireito">
+      <div class="containerParteDeCima">
+        <div class="containerLadoEsquerdo">
+          <div class="card">
+            <span class="titulo">CPU</span>
+            <canvas id='gauge-cpu' class="gauge"></canvas>
+            <span class="TituloGauge"><span class="red">4.0</span> / 4.0 </span>
+          </div>
+        </div>
+        <div class="containerLadoDireito">
+          <div class="card">
+            <span class="titulo">Temperatura da CPU</span>
+            <canvas id='gauge-temperaturaCPU' class="gauge"></canvas>
+            <span class="TituloGauge"><span class="green">40ºc</span> / 150ºc </span>
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="containerParteDeBaixo">
+        <div class="card">
+          <span class="titulo">Temperatura da RAM</span>
+          <canvas id='gauge-temperaturaRAM' class="gauge"></canvas>
+          <span class="TituloGauge"><span class="green">40ºc</span> / 150ºc </span>
+        </div>
+        <div class="card">
+          <span class="titulo">RAM</span>
+          <canvas id='gauge-ram' class="gauge"></canvas>
+          <span class="TituloGauge"><span class="yellow">2.0</span> / 4.0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+</html>
+
+
+<script>
+  let maximoCPU = 400;
+  let maximoTemperaturaCPU = 15000;
+  let maximoTemperaturaRAM = 15000;
+  let maximoRAM = 400;
+  let zonaVerdeCPU = 100;
+  let zonaVerdeRAM = 100;
+  let zonaAmarelaRAM = 300;
+  let zonaAmarelaCPU = 300;
+  let zonaVermelhaRAM = 400;
+  let zonaVermelhaCPU = 400;
+  let zonaVerdeTemperaturaCPU = 4000;
+  let zonaVerdeTemperaturaRAM = 4000;
+  let zonaAmarelaTemperaturaCPU = 6500 ;
+  let zonaAmarelaTemperaturaRAM = 6500 ;
+  let zonaVermelhaTemperaturaCPU = 15000 ;
+  let zonaVermelhaTemperaturaRAM = 15000;
+
+
+  const ctx = document.getElementById('myChart');
+  let dadosTotem1 = [];
+  var dadosTotem2 = [];
+  var dadosTotem3 = [];
+
+
+  for (var i = 0; i < 31; i++) {
+    dadosTotem1.push(Math.floor(Math.random() * 11));
+    dadosTotem2.push(Math.floor(Math.random() * (25 - 12 + 1) + 12));
+    dadosTotem3.push(Math.floor(Math.random() * 11) + 20);
+  }
+
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'],
+      datasets: [{
+        label: 'TOT001',
+        data: dadosTotem1,
+        borderColor: 'blue' // Mudança da cor da label TOT001 para vermelho
+        , backgroundColor: 'blue'
+      }, {
+        label: 'TOT002',
+        data: dadosTotem2,
+        borderWidth: 1,
+        borderColor: 'purple' // Mudança da cor da label TOT001 para vermelho
+        , backgroundColor: 'purple'
+      }, {
+        label: 'TOT003',
+        data: dadosTotem3,
+        borderWidth: 1,
+        borderColor: 'orange' // Mudança da cor da label TOT001 para vermelho
+        , backgroundColor: 'orange'
+      }, {
+        label: 'TOT004',
+        data: [15, 19, 5, 10, 3, 7, 15, 19, 5, 5, 8, 9, 15, 19, 8, 9, 10, 14, 15, 19, 13, 15, 12, 13, 15, 19, 13, 15, 12, 13],
+        borderWidth: 1,
+        borderColor: 'red' // Mudança da cor da label TOT001 para vermelho
+        , backgroundColor: 'red'
+
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+
+
+  var soma1 = 0;
+  var soma2 = 0;
+  var soma3 = 0;
+
+  for (var i = 0; i < 31; i++) {
+    soma1 += dadosTotem1[i];
+    soma2 += dadosTotem2[i];
+    soma3 += dadosTotem3[i];
+  }
+
+  var media1 = soma1 / 30;
+  var media2 = soma2 / 30;
+  var media3 = soma3 / 30;
+
+  console.log(media1)
+</script>
+<script src="./js/headerOficial.js">
+</script>
+
+<script>
+  const ctxBarra = document.getElementById('GraficoDeBarraMensal');
+
+  new Chart(ctxBarra, {
+    type: 'bar',
+    data: {
+      labels: ['Abril', 'Março', 'Fevereiro', 'Janeiro'],
+      datasets: [{
+        label: 'TOT001',
+        data: [media1, 10, 2, 5],
+        borderWidth: 1,
+        borderColor: 'blue' // Mudança da cor da label TOT001 para vermelho
+        , backgroundColor: 'blue'
+      }, {
+        label: 'TOT002',
+        data: [media2, 19, 3, 5],
+        borderWidth: 1,
+        borderColor: 'purple', // Mudança da cor da label TOT001 para vermelho.
+        backgroundColor: 'purple'
+      }, {
+        label: 'TOT003',
+        data: [media3, 19, 3, 5],
+        borderWidth: 1,
+        backgroundColor: 'orange',
+        borderColor: 'orange'
+      }, {
+        label: 'TOT004',
+        data: [12, 19, 3, 5],
+        borderWidth: 1,
+        backgroundColor: 'red',
+        borderColor: 'red'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  var opts_cpu = {
+    angle: 0, // ângulo inicial
+    lineWidth: 0.22, // largura da linha
+    radiusScale: 1, // escala do raio
+    pointer: {
+      length: 0.6, // comprimento do ponteiro
+      strokeWidth: 0.035, // largura do ponteiro
+      color: '#000000' // cor do ponteiro
+    },
+    limitMax: true, // se deve limitar o valor máximo
+    limitMin: true, // se deve limitar o valor mínimo
+    strokeColor: '#E0E0E0', // cor da linha
+    generateGradient: true, // se deve gerar gradiente
+    highDpiSupport: true, // suporte a alta definição
+    staticZones: [
+      { strokeStyle: "#30B32D", min: 0, max: zonaVerdeCPU}, // zona verde
+      { strokeStyle: "#FFDD00", min: zonaVerdeCPU, max: zonaAmarelaCPU }, // zona amarela
+      { strokeStyle: "#F03E3E", min: zonaAmarelaCPU, max: zonaVermelhaCPU} // zona vermelha
+    ]
+  };
+  // var target = document.getElementById('gauge'); // elemento HTML onde o medidor será exibido
+  // var gauge = new Gauge(target).setOptions(opts); // cria a instância do Gauge e configura as opções
+  // gauge.maxValue = 3000; // valor máximo do medidor
+  // gauge.setMinValue(0); // valor mínimo do medidor
+  // gauge.animationSpeed = 32; // velocidade da animação
+
+  var target_cpu = document.getElementById('gauge-cpu');
+  var gauge_cpu = new Gauge(target_cpu).setOptions(opts_cpu);
+
+  gauge_cpu.maxValue = maximoCPU;
+  gauge_cpu.setMinValue(0);
+  gauge_cpu.animationSpeed = 5;
+  gauge_cpu.set(400);
+
+  // ----------------------------------------------------------------
+ 
+  var opts_ram = {
+    angle: 0, // ângulo inicial
+    lineWidth: 0.22, // largura da linha
+    radiusScale: 1, // escala do raio
+    pointer: {
+      length: 0.6, // comprimento do ponteiro
+      strokeWidth: 0.035, // largura do ponteiro
+      color: '#000000' // cor do ponteiro
+    },
+    limitMax: true, // se deve limitar o valor máximo
+    limitMin: true, // se deve limitar o valor mínimo
+    strokeColor: '#E0E0E0', // cor da linha
+    generateGradient: true, // se deve gerar gradiente
+    highDpiSupport: true, // suporte a alta definição
+    staticZones: [
+      { strokeStyle: "#30B32D", min: 0, max: zonaVerdeRAM }, // zona verde
+      { strokeStyle: "#FFDD00", min: zonaVerdeRAM, max: zonaAmarelaRAM }, // zona amarela
+      { strokeStyle: "#F03E3E", min: zonaAmarelaRAM, max: zonaVermelhaRAM } // zona vermelha
+    ]
+  };
+  // var target = document.getElementById('gauge'); // elemento HTML onde o medidor será exibido
+  // var gauge = new Gauge(target).setOptions(opts); // cria a instância do Gauge e configura as opções
+  // gauge.maxValue = 3000; // valor máximo do medidor
+  // gauge.setMinValue(0); // valor mínimo do medidor
+  // gauge.animationSpeed = 32; // velocidade da animação
+
+  var target_ram = document.getElementById('gauge-ram');
+  var gauge_ram = new Gauge(target_ram).setOptions(opts_ram);
+
+  gauge_ram.maxValue = maximoRAM;
+  gauge_ram.setMinValue(0);
+  gauge_ram.animationSpeed = 5;
+  gauge_ram.set(200);
+
+  // ----------------------------------------------------------------
+
+  var opts_temperaturaCPU = {
+    angle: -0.45, // ângulo inicial
+    lineWidth: 0.2, // largura da linha
+    radiusScale: 1, // escala do raio
+    pointer: {
+      length: 0.6, // comprimento do ponteiro
+      strokeWidth: 0.035, // largura do ponteiro
+      color: '#000000' // cor do ponteiro
+    },
+    limitMax: true, // se deve limitar o valor máximo
+    limitMin: true, // se deve limitar o valor mínimo
+    strokeColor: '#E0E0E0', // cor da linha
+    generateGradient: true, // se deve gerar gradiente
+    highDpiSupport: true, // suporte a alta definição
+    staticZones: [
+      { strokeStyle: "#30B32D", min: 0, max: zonaVerdeTemperaturaCPU}, // zona verde
+      { strokeStyle: "#FFDD00", min: zonaVerdeTemperaturaCPU, max: zonaAmarelaTemperaturaCPU }, // zona amarela
+      { strokeStyle: "#F03E3E", min: zonaAmarelaTemperaturaCPU, max: zonaVermelhaTemperaturaCPU } // zona vermelha
+    ]
+  };
+
+  var target_temperaturaCPU = document.getElementById('gauge-temperaturaCPU'); // Seleciona o elemento HTML para exibir o medidor
+  var gauge_temperaturaCPU = new Gauge(target_temperaturaCPU).setOptions(opts_temperaturaCPU); // Cria o medidor com as opções definidas
+  gauge_temperaturaCPU.maxValue = maximoTemperaturaCPU; // Define o valor máximo do medidor
+  gauge_temperaturaCPU.setMinValue(0); // Define o valor mínimo do medidor
+  gauge_temperaturaCPU.animationSpeed = 32; // Define a velocidade da animação do medidor
+  gauge_temperaturaCPU.set(1500); // Define o valor atual do medidor
+
+  // ----------------------------------------------------------------
+
+  var opts_temperaturaRAM = {
+    angle: -0.45, // ângulo inicial
+    lineWidth: 0.2, // largura da linha
+    radiusScale: 1, // escala do raio
+    pointer: {
+      length: 0.6, // comprimento do ponteiro
+      strokeWidth: 0.035, // largura do ponteiro
+      color: '#000000' // cor do ponteiro
+    },
+    limitMax: true, // se deve limitar o valor máximo
+    limitMin: true, // se deve limitar o valor mínimo
+    strokeColor: '#E0E0E0', // cor da linha
+    generateGradient: true, // se deve gerar gradiente
+    highDpiSupport: true, // suporte a alta definição
+    staticZones: [
+      { strokeStyle: "#30B32D", min: 0, max: zonaVerdeTemperaturaRAM}, // zona verde
+      { strokeStyle: "#FFDD00", min: zonaVerdeTemperaturaRAM, max: zonaAmarelaTemperaturaRAM }, // zona amarela
+      { strokeStyle: "#F03E3E", min: zonaAmarelaTemperaturaRAM, max: zonaVermelhaTemperaturaRAM } // zona vermelha
+    ]
+  };
+
+  var target_temperaturaRAM = document.getElementById('gauge-temperaturaRAM'); // Seleciona o elemento HTML para exibir o medidor
+  var gauge_temperaturaRAM = new Gauge(target_temperaturaRAM).setOptions(opts_temperaturaRAM); // Cria o medidor com as opções definidas
+  gauge_temperaturaRAM.maxValue = maximoTemperaturaRAM; // Define o valor máximo do medidor
+  gauge_temperaturaRAM.setMinValue(0); // Define o valor mínimo do medidor
+  gauge_temperaturaRAM.animationSpeed = 32; // Define a velocidade da animação do medidor
+  gauge_temperaturaRAM.set(1500); // Define o valor atual do medidor
+
+</script>

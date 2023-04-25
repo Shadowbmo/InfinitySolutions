@@ -1,89 +1,203 @@
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/loginMobile.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/loginMobile.css">
 </head>
-  
-  <body>
-    <div class="container">
-      <div class="forms-container">
-        <div class="signin-signup">
-          <form action="#" class="sign-in-form">
-            <h2 class="title">Entre agora mesmo </h2>
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Email, CPF ou CNPJ" name="Usuario" id="Usuario" />
-            </div>
-            <div class="input-field">
-                <i class="fas fa-user"></i>
-                <input type="text" placeholder="Usuario" name="Senha" id="Usuario" />
-              </div>
-            <input type="button" value="Logar" class="btn solid" onclick="entrar()" />
-          </form>
-          <form action="#" class="sign-up-form">
-            <h2 class="title">Registre-se</h2>
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Nome Fantasia" />
-            </div>
-              <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="CNPJ" />
-         </div>     
-              <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="email" placeholder="E-Mail" />       
-            </div>
-            <div class="input-field">
-              <i class="fas fa-envelope"></i>
-              <input type="password" placeholder="Senha" />
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Confirme sua Senha" />
-            </div>
-            <input type="submit" class="btn" value="Registrar" onclick="entrar()" />
-          </form>
+
+<body>
+ v  <div class="container">
+    <div class="forms-container">
+      <div class="signin-signup">
+        <main action="#" class="sign-in-form">
+          <h2 class="title">Entre agora mesmo </h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Email, CPF ou CNPJ" name="Usuario" id="Usuario" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Usuario" name="Senha" id="inputSenhaLogin" />
+          </div>
+          <button type="button" class="btn solid" onclick="entrar()"> Logar </button>
+        </main>
+        <main class="sign-up-form">
+          <h2 class="title">Registre-se</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Nome Fantasia" id="inputNomeFantasia" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="CNPJ" onkeyup="mascaraCNPJ()" id="inputCnpjRegistro" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="email" placeholder="E-Mail" id="inputEmailRegistro" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="password" placeholder="Senha" id="inputSenhaRegistro" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Confirme sua Senha" id="" />
+          </div>
+          <input type="submit" class="btn" value="Registrar" onclick="entrar()" />
+        </main>
+      </div>
+    </div>
+
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>é novo ?</h3>
+          <p>
+            Clique aqui para fazer uma nova conta
+          </p>
+          <button class="btn transparent" id="sign-up-btn">
+            Registrar
+          </button>
         </div>
       </div>
-  
-      <div class="panels-container">
-        <div class="panel left-panel">
-          <div class="content">
-            <h3>é novo ?</h3>
-            <p>
-                Clique aqui para fazer uma nova conta
-            </p>
-            <button class="btn transparent" id="sign-up-btn">
-              Registrar
-            </button>
-          </div>
-        </div>
-        <div class="panel right-panel">
-          <div class="content">
-            <h3>Já tem uma conta ?</h3>
-            <p>
+      <div class="panel right-panel">
+        <div class="content">
+          <h3>Já tem uma conta ?</h3>
+          <p>
             Logue-se agora
-            </p>
-            <button class="btn transparent" id="sign-in-btn" onclick="entrar()">
-              Logar
-            </button>
-          </div>
+          </p>
+          <button class="btn transparent" id="sign-in-btn">
+            Logar
+          </button>
         </div>
       </div>
     </div>
-  
-  </body>
+  </div>
 
-  <script src="./js/telaMobile.js">
+</body>
 
-  </script>
-  <script src="./js/teste2.js">
+<script src="./js/telaMobile.js">
 
-  </script>
-  
-  <script>
-    function entrar(){
-        window.location.href = "./paginaInicial.html";
-    }
+</script>
+<script src="./js/teste2.js">
+
+</script>
+
+<script>
+  function entrar() {
+
+    var emailVar = Usuario.value;
+    var senhaVar = inputSenhaLogin.value;
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+          console.log(json)
+
+          sessionStorage.EMAIL_USUARIO = json.email;
+          sessionStorage.NOME_USUARIO = json.Nome;
+          sessionStorage.ID_USUARIO = json.idEmpresa;
+
+          setTimeout(function () {
+            window.location = "./paginaInicial.html";
+          }, 10);
+
+        });
+
+      } else {
+
+        console.log("Houve um erro ao tentar realizar o login!");
+
+        resposta.text().then(texto => {
+          console.error(texto);
+          finalizarAguardar(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    return false;
+  }
+
+  let cnpjzinho = 0;
+  function mascaraCNPJ() {
+    let valorCNPJ = inputCnpjRegistro.value;
+    valorCNPJ = valorCNPJ.replace(/\D/g, ''); // Remove todos os caracteres não numéricos do valorCNPJ
+    valorCNPJ = valorCNPJ.replace(/(\d{2})(\d)/, '$1.$2'); // Adiciona um ponto após os primeiros 2 dígitos
+    valorCNPJ = valorCNPJ.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona um ponto após os próximos 3 dígitos
+    valorCNPJ = valorCNPJ.replace(/(\d{3})(\d)/, '$1/$2'); // Adiciona uma barra após os próximos 3 dígitos
+    valorCNPJ = valorCNPJ.replace(/(\d{4})(\d)/, '$1-$2'); // Adiciona um hífen após os últimos 4 dígitos
+
+    inputCnpjRegistro.value = valorCNPJ;
+    cnpjzinho = valorCNPJ;
+  }
+
+  function cadastrar() {
+    var nomeVar = inputNomeFantasia.value;
+    var cnpjVar = inputCnpjRegistro.value;
+    var emailVar = inputEmailRegistro.value;
+    var senhaVar = inputSenhaRegistro.value;
+    var confirmacaoSenhaVar = inputConfirmacaoDeSenha
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        cnpjServer: cnpjVar
+      })
+    }).then(function (resposta) {
+
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log(resposta);
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+
+          sessionStorage.EMAIL_USUARIO = json.email;
+          sessionStorage.NOME_USUARIO = json.Nome;
+          sessionStorage.ID_USUARIO = json.idEmpresa;
+
+          setTimeout(function () {
+            window.location = "paginaInicial.html";
+          }, 100); // apenas para exibir o loading
+        });
+
+        limparFormulario();
+        //        finalizarAguardar();
+      } else {
+        throw ("Houve um erro ao tentar realizar o cadastro!");
+      }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+  }
 </script>

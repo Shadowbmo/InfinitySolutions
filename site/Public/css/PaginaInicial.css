@@ -124,9 +124,9 @@
 .body {
     height: 70%;
     display: flex;
-    background-color: var(--BrancoMelvs);
     position: relative;
     margin: 15px;
+    background-color: green !important;
 }
 
 
@@ -169,6 +169,8 @@ section .card .imagem img {
 
 section{
     background-color: var(--BrancoMelvs);
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .container {
