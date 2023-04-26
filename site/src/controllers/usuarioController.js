@@ -16,7 +16,7 @@ function listar(req, res) {
                 res.status(204).send("Nenhum resultado encontrado!")
             }
         }).catch(
-            function (erro) {
+            function (erro) {   
                 console.log(erro);
                 console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);

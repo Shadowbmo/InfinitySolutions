@@ -82,7 +82,7 @@ function headerTop() {
     <i class="uil uil-list-ul"></i>
   </div>
 
-  <div class="logo">
+  <div class="logo" onclick='Teste()'>
     <img src="./assets/img/Monitoring Solution (500 × 250 px).svg" alt="">
   </div>
   <div>
@@ -112,4 +112,8 @@ function winSair() {
 
 function winSuporte(){
     window.open("https://infinitySolutions.auvo.com.br");  
+}
+
+function Teste() {
+  window.location= "./paginaInicialTotem.html"
 }

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  <staticContent>
+    <mimeMap fileExtension=".js" mimeType="text/javascript" />
+  </staticContent>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,7 +47,7 @@
               <div class="imagem">
 
                 <!-- imagem que vai ficar no quadrado do card-->
-                <img src="./assets/icones/iconeSuperMercadoCritico.svg">
+                <img src="./assets/img/totemVermelho (1).png">
 
               </div>
 
@@ -62,7 +64,7 @@
 
               <!-- Div que tem o botão -->
               <div class="botao">
-                <a href="#"> <button> Visualizar Totem  </button></a>
+                <a href="./telaDoGraficoTecnico.html"> <button> Visualizar Totem  </button></a>
               </div>
             </div>
           </div>
@@ -87,7 +89,7 @@
               <div class="imagem">
 
                 <!-- imagem que vai ficar no quadrado do card-->
-                <img src="./assets/icones/iconeSuperMercadoAtencao.svg">
+                <img src="./assets/img/totemAmarelo.png">
 
               </div>
 
@@ -107,7 +109,7 @@
               </div>
 
               <!-- Div que tem o botão -->
-              <div class="botao"><a href="#">
+              <div class="botao"><a href="./telaDoGraficoTecnico.html">
                   <button> Visualizar Totem</button>
                 </a>
               </div>
@@ -134,7 +136,7 @@
               <div class="imagem">
 
                 <!-- imagem que vai ficar no quadrado do card-->
-                <img src="./assets/icones/iconeSuperMercadoOk.svg">
+                <img src="./assets/img/totemVerde.png">
 
               </div>
 
@@ -152,8 +154,8 @@
               </div>
 
               <!-- Div que tem o botão -->
-              <div class="botao"><a href="#">
-                  <button> Visualizar Totem</button>
+              <div class="botao"><a href="./telaDoGraficoTecnico.html">
+                  <button > Visualizar Totem</button>
                 </a>
               </div>
             </div>
@@ -170,83 +172,4 @@
 </html>
 
 <script src="./js/headerOficial.js">
-</script>
-<script>
-  var cnpj = sessionStorage.ID_USUARIO;
-  let id = cnpj;
-  id = id.replace(/\.|\-|\//g, '');
-
-  function listar() {
-
-    fetch(`/usuarios/listarTodasFiliais/${id}`).then(function (resposta) {
-      if (resposta.ok) {
-        if (resposta.status == 204) {
-          throw "Nenhum resultado encontrado!!";
-        }
-
-        resposta.json().then(function (resposta) {
-          console.log("Dados recebidos: ", JSON.stringify(resposta));
-          cardContainer.innerHTML = "";
-          for (let i = 0; i < resposta.length; i++) {
-            var publicacao = resposta[i];
-            cardContainer.innerHTML += `
-                      <div class="container"> <!-- Div que tem o conteudo em si -->
-        <div class="conteudo">
-
-          <!-- Div que tem todo o quadrado ou cada card (ou cada post-it) -->
-          <div class="card">
-
-            <!-- Counteudo que tem em cada card (ou post-it)-->
-            <div class="conteudo-card">
-
-              <!-- Div que contem a imagem (aquela bola)-->
-              <div class="imagem">
-
-                <!-- imagem que vai ficar no quadrado do card-->
-                <img src="./assets/icones/iconeSuperMercadoCritico.svg">
-
-              </div>
-
-              <!-- Div que contem o nome do armazem -->
-              <div class="nome-do-armazem-e-sua-descrisao">
-                <span class="nome-do-armazem">${publicacao.Nome}</span>
-                <span class="descrisao-do-armazem"> ${publicacao.Cidade}</span>
-              </div>
-
-              <!-- Div que contem o status do armazem -->
-              <div class="status-armazem1">
-                <span class="">Problema</span>
-              </div>
-
-              <!-- Div que tem o botão -->
-              <div class="botao">
-                <a href="#"> <button onclick="verificar('${publicacao.idEmpresa}')"> Visualizar Totem </button></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-                      
-                      `
-
-          }
-
-        });
-      } else {
-        throw ('Houve um erro na API!');
-      }
-    }).catch(function (resposta) {
-      console.error(resposta);
-    });
-  }
-
-
-  listar();
-
-
-  function verificar(idFilial) {
-    sessionStorage.FILIAL = idFilial;
-    window.location = "./cadastroFiliais.html"
-  }
-
 </script>
