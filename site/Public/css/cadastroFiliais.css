@@ -8,6 +8,12 @@
 	font: inherit;
 	vertical-align: baseline;
 }
+.cadastrar{
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
 
 :root {
   --BrancoMelvs: #eff0e8d5;

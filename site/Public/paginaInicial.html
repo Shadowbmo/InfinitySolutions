@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="./css/PaginaInicial.css">
   <!-- linkando os icones-->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -189,7 +188,11 @@
           cardContainer.innerHTML = "";
           for (let i = 0; i < resposta.length; i++) {
             var publicacao = resposta[i];
-            cardContainer.innerHTML += `
+            if(publicacao.idEmpresa == publicacao.Filial){
+
+            }else{
+            if (publicacao.status == "problema") {
+              cardContainer.innerHTML += `
                       <div class="container"> <!-- Div que tem o conteudo em si -->
         <div class="conteudo">
 
@@ -228,7 +231,89 @@
       </div>
                       
                       `
+            } else if (publicacao.status == "atencao") {
+              cardContainer.innerHTML += `
+                      <div class="container"> <!-- Div que tem o conteudo em si -->
+        <div class="conteudo">
 
+          <!-- Div que tem todo o quadrado ou cada card (ou cada post-it) -->
+          <div class="card">
+
+            <!-- Counteudo que tem em cada card (ou post-it)-->
+            <div class="conteudo-card">
+
+              <!-- Div que contem a imagem (aquela bola)-->
+              <div class="imagem">
+
+                <!-- imagem que vai ficar no quadrado do card-->
+                <img src="./assets/icones/iconeSuperMercadoAtencao.svg">
+
+              </div>
+
+              <!-- Div que contem o nome do armazem -->
+              <div class="nome-do-armazem-e-sua-descrisao">
+                <span class="nome-do-armazem">${publicacao.Nome}</span>
+                <span class="descrisao-do-armazem"> ${publicacao.Cidade}</span>
+              </div>
+
+              <!-- Div que contem o status do armazem -->
+              <div class="status-armazem2">
+                <span class="">Atenção</span>
+              </div>
+
+              <!-- Div que tem o botão -->
+              <div class="botao">
+                <a href="#"> <button onclick="verificar('${publicacao.idEmpresa}')"> Visualizar Supermercado </button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+                      
+                      `
+            } else {
+              cardContainer.innerHTML += `
+                      <div class="container"> <!-- Div que tem o conteudo em si -->
+        <div class="conteudo">
+
+          <!-- Div que tem todo o quadrado ou cada card (ou cada post-it) -->
+          <div class="card">
+
+            <!-- Counteudo que tem em cada card (ou post-it)-->
+            <div class="conteudo-card">
+
+              <!-- Div que contem a imagem (aquela bola)-->
+              <div class="imagem">
+
+                <!-- imagem que vai ficar no quadrado do card-->
+                <img src="./assets/icones/iconeSuperMercadoOk.svg">
+
+              </div>
+
+              <!-- Div que contem o nome do armazem -->
+              <div class="nome-do-armazem-e-sua-descrisao">
+                <span class="nome-do-armazem">${publicacao.Nome}</span>
+                <span class="descrisao-do-armazem"> ${publicacao.Cidade}</span>
+              </div>
+
+              <!-- Div que contem o status do armazem -->
+              <div class="status-armazem">
+                <span class="">Ok</span>
+              </div>
+
+              <!-- Div que tem o botão -->
+              <div class="botao">
+                <a href="#"> <button onclick="verificar('${publicacao.idEmpresa}')"> Visualizar Supermercado </button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+                      
+                      `
+            }
+          }
+          
           }
 
         });

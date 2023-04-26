@@ -158,28 +158,28 @@ console.log(media1)
   new Chart(ctxBarra, {
     type: 'bar',
     data: {
-      labels: ['Abril', 'Março', 'Fevereiro', 'Janeiro'],
+      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril'],
       datasets: [{
         label: 'TOT001',
-        data: [media1, 10,2, 5],
+        data: [media1, 10, 5, media1],
         borderWidth: 1,
         borderColor: 'blue' // Mudança da cor da label TOT001 para vermelho
         , backgroundColor: 'blue'
       },{
         label: 'TOT002',
-        data: [media2, 19, 3, 5],
+        data: [media2, 19, 12, media2],
         borderWidth: 1,
         borderColor: 'purple', // Mudança da cor da label TOT001 para vermelho.
         backgroundColor: 'purple'
       },{
         label: 'TOT003',
-        data: [media3, 19, 3, 5],
+        data: [media3, 34, 34, media3],
         borderWidth: 1,
         backgroundColor: 'orange',
         borderColor: 'orange' 
       },{
         label: 'TOT004',
-        data: [12, 19, 3, 5],
+        data: [12, 34, 5, 5],
         borderWidth: 1,
         backgroundColor: 'red',
         borderColor: 'red'

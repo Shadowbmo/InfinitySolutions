@@ -21,7 +21,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
-
+app.use(express.static('public', {
+    setHeaders: (res, path, stat) => {
+      if (path.endsWith('.js')) {
+        res.setHeader('Content-Type', 'text/javascript');
+      }
+    }
+  }));
 app.use("/", indexRouter);
 app.use("/totem", totemRouter);
 app.use("/responsavel", responsavelRouter);

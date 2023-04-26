@@ -29,6 +29,12 @@ a {
   button:hover {
     opacity: 0.5;
   }
+  .cadastrar{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
   
   .header i:hover {
     opacity: 0.5;
