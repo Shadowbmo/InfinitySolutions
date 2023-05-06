@@ -81,25 +81,22 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mydb`.`Totem` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Totem` (
-  `NumIdenti` INT NOT NULL,
-  `fkEmpresa` INT NOT NULL,
-  `DataFabrica` DATE NULL,
-  `Marca` VARCHAR(45) NULL,
-  `SO` VARCHAR(45) NULL,
-  `descErro` VARCHAR(120) NULL,
-  `CapacidadeDeMemoriaRam` DOUBLE NULL,
-  `CapacidadeDeCPU` DOUBLE NULL,
-  `CapacidadeDeTemperatura` DOUBLE NULL,
-  `CapacidadeDeDisco` DOUBLE NULL,
-  PRIMARY KEY (`NumIdenti`, `fkEmpresa`),
-  INDEX `fk_Totem_Empresa1_idx` (`fkEmpresa` ASC) VISIBLE,
-  CONSTRAINT `fk_Totem_Empresa1`
-    FOREIGN KEY (`fkEmpresa`)
-    REFERENCES `mydb`.`Empresa` (`idEmpresa`)
+CREATE TABLE Totem (
+  NumIdenti VARCHAR(45) NOT NULL,
+  fkEmpresa VARCHAR(18) NOT NULL,
+  DataFabrica DATE NULL,
+  Marca VARCHAR(45) NULL,
+  SO VARCHAR(45) NULL,
+  descErro VARCHAR(120) NULL,
+  ConsumoDeMemoriaRam VARCHAR(45) NULL,
+  ConsumoDeCPU VARCHAR(45) NULL,
+  ConsumoDeTemperatura VARCHAR(45) NULL,
+  PRIMARY KEY (NumIdenti, fkEmpresa),
+  CONSTRAINT fk_Totem_Empresa1
+    FOREIGN KEY (fkEmpresa)
+    REFERENCES [dbo].[Empresa] (idEmpresa)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
