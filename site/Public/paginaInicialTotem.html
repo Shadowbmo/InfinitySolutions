@@ -173,3 +173,165 @@
 
 <script src="./js/headerOficial.js">
 </script>
+<script>
+  var cnpj = sessionStorage.FILIAL;
+  let id = cnpj;
+  id = id.replace(/\.|\-|\//g, '');
+
+  function listar() {
+
+    fetch(`/usuarios/listarTodosTotems/${id}`).then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          throw "Nenhum resultado encontrado!!";
+        }
+
+        resposta.json().then(function (resposta) {
+          console.log("Dados recebidos: ", JSON.stringify(resposta));
+          cardContainer.innerHTML = "";
+          for (let i = 0; i < resposta.length; i++) {
+            var publicacao = resposta[i];
+           
+            if (publicacao.status == "problema") {
+              cardContainer.innerHTML += `
+                      <div class="container"> <!-- Div que tem o conteudo em si -->
+        <div class="conteudo">
+
+          <!-- Div que tem todo o quadrado ou cada card (ou cada post-it) -->
+          <div class="card">
+
+            <!-- Counteudo que tem em cada card (ou post-it)-->
+            <div class="conteudo-card">
+
+              <!-- Div que contem a imagem (aquela bola)-->
+              <div class="imagem">
+
+                <!-- imagem que vai ficar no quadrado do card-->
+                <img src="./assets/img/totemVermelho.png>
+
+              </div>
+
+              <!-- Div que contem o nome do armazem -->
+              <div class="nome-do-armazem-e-sua-descrisao">
+                <span class="nome-do-armazem">Totem ${publicacao.NumIdenti}</span>
+              </div>
+
+              <!-- Div que contem o status do armazem -->
+              <div class="status-armazem1">
+                <span class="">Problema</span>
+              </div>
+
+              <!-- Div que tem o botão -->
+              <div class="botao">
+                <a href="#"> 
+                  <button onclick="verificar('${publicacao.NumIdenti}')"> Visualizar Supermercado </button>
+                  </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+                      
+                      `
+            } else if (publicacao.status == "atencao") {
+              cardContainer.innerHTML += `
+                      <div class="container"> <!-- Div que tem o conteudo em si -->
+        <div class="conteudo">
+
+          <!-- Div que tem todo o quadrado ou cada card (ou cada post-it) -->
+          <div class="card">
+
+            <!-- Counteudo que tem em cada card (ou post-it)-->
+            <div class="conteudo-card">
+
+              <!-- Div que contem a imagem (aquela bola)-->
+              <div class="imagem">
+
+                <!-- imagem que vai ficar no quadrado do card-->
+                <img src="./assets/img/totemAmarelo.png">
+
+              </div>
+
+              <!-- Div que contem o nome do armazem -->
+              <div class="nome-do-armazem-e-sua-descrisao">
+                <span class="nome-do-armazem">Totem ${publicacao.NumIdenti}</span>
+              </div>
+
+              <!-- Div que contem o status do armazem -->
+              <div class="status-armazem2">
+                <span class="">Atenção</span>
+              </div>
+
+              <!-- Div que tem o botão -->
+              <div class="botao">
+                <a href="#"> <button onclick="verificar('${publicacao.NumIdenti}')"> Visualizar Supermercado </button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+                      
+                      `
+            } else {
+              cardContainer.innerHTML += `
+                      <div class="container"> <!-- Div que tem o conteudo em si -->
+        <div class="conteudo">
+
+          <!-- Div que tem todo o quadrado ou cada card (ou cada post-it) -->
+          <div class="card">
+
+            <!-- Counteudo que tem em cada card (ou post-it)-->
+            <div class="conteudo-card">
+
+              <!-- Div que contem a imagem (aquela bola)-->
+              <div class="imagem">
+
+                <!-- imagem que vai ficar no quadrado do card-->
+                <img src="./assets/img/totemVerde.png">
+
+              </div>
+
+              <!-- Div que contem o nome do armazem -->
+              <div class="nome-do-armazem-e-sua-descrisao">
+                <span class="nome-do-armazem">Totem ${publicacao.NumIdenti}</span>
+              </div>
+
+              <!-- Div que contem o status do armazem -->
+              <div class="status-armazem">
+                <span class="">Ok</span>
+              </div>
+
+              <!-- Div que tem o botão -->
+              <div class="botao">
+                <a href="#"> <button onclick="verificar('${publicacao.NumIdenti}')"> Visualizar Supermercado </button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+                      
+                      `
+            }
+          
+          
+          }
+
+        });
+      } else {
+        throw ('Houve um erro na API!');
+      }
+    }).catch(function (resposta) {
+      console.error(resposta);
+    });
+  }
+
+
+  listar();
+
+
+  function verificar(identificacaoTotem) {
+    sessionStorage.NUMERODEINDENTIFICACAO = identificacaoTotem;
+    window.location = "./telaDoGraficoTecnico.html"
+  }
+
+</script>

@@ -46,7 +46,7 @@ CREATE TABLE Totem (
 
 
 CREATE TABLE MonitoramentoDeRecursos (
-  idCapacidade INT,
+  idCapacidade INT auto_increment ,
   FKTotem VARCHAR(10),
   PorcentagemMemoriaRam DOUBLE,
   PorcentagemDisco DOUBLE,
@@ -55,8 +55,8 @@ CREATE TABLE MonitoramentoDeRecursos (
   Processos VARCHAR(255),
   DataHora DATETIME,
   PRIMARY KEY (idCapacidade, FKTotem),
-    FOREIGN KEY (FKTotem)
-    REFERENCES Totem (NumIdenti))
+  FOREIGN KEY (FKTotem)
+  REFERENCES Totem (NumIdenti))
 
 
 CREATE TABLE Limites (

@@ -31,17 +31,46 @@
   <div class="headerTopzaum" id="headerTopzinho">
   </div>
   <!--Graficos-->
-  <div class="listaConteudo">
-    <div class="caixaConteudo">
+  <div class="cadastrar">
+    <div>
+      <button onclick="openModal()"><i class="uil uil-user-plus"></i> Cadastrar Filial</button>
+    </div>
 
-      <div class="cadastrar">
-        <button id="modal-btn"><i class="uil uil-user-plus"></i> Cadastrar Filial</button>
+  </div>
+  <div class="lista">
+    <div class="titulos">
+      <div class="titulo">
+        Nome
       </div>
-      <ul id="listaEmpresa">
-      </ul>
+      <div class="titulo">
+        CNPJ
+      </div>
+      <div class="titulo">
+        CEP
+      </div>
+      <div class="titulo">
+        Estado
+      </div>
+      <div class="titulo">
+        Cidade
+      </div>
+      <div class="titulo2">
+        Editar
+      </div>
+      <div class="titulo2">
+        Excluir
+      </div>
     </div>
   </div>
 
+  <div class="lista">
+    <div class="lista2" id="listinha">
+
+
+
+    </div>
+
+  </div>
 
 
   <!-- **************************************************************************************** -->
@@ -139,8 +168,13 @@
 </html>
 
 <script>
-    var id = sessionStorage.ID_USUARIO
-  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+
+
+
+ var cnpj = sessionStorage.ID_USUARIO;
+  let id = cnpj;
+  id = id.replace(/\.|\-|\//g, '');
   function cadastrarUsuario() {
     var dadosInput = {
       matrizServer : sessionStorage.ID_USUARIO,
@@ -167,6 +201,7 @@
 
       if (resposta.ok) {
         console.log("DEU CERTOOO")
+        window.location = "./cadastroFiliais.html"
       } else if (resposta.status == 404) {
         window.alert("Deu 404!");
       } else {
@@ -182,8 +217,7 @@
 
 
   function atualizarFuncionario() {
-    var id = idUsuario;
-    fetch(`/avisos/atualizarFuncionario/${id}`).then(function (resposta) {
+      fetch(`/avisos/atualizarFuncionario/${id}`).then(function (resposta) {
       if (resposta.ok) {
         if (resposta.status == 204) {
           throw "Nenhum resultado encontrado!!";
@@ -221,6 +255,69 @@
     inputCNPJ.value = valorCNPJ;
     cnpjzinho = valorCNPJ;
   }
+
+
+
+  
+  function listar() {
+
+fetch(`/usuarios/listarTodasFiliais/${id}`).then(function (resposta) {
+  if (resposta.ok) {
+    if (resposta.status == 204) {
+      throw "Nenhum resultado encontrado!!";
+      listinha.innerHTML = ""
+    }
+
+    resposta.json().then(function (resposta) {
+      console.log("Dados recebidos: ", JSON.stringify(resposta));
+      listinha.innerHTML = "";
+      for (posicaoAtual = 0; posicaoAtual < resposta.length; posicaoAtual++) {
+        let dadoAtual = resposta[posicaoAtual];
+        if (sessionStorage.ID_USUARIO != dadoAtual.idEmpresa){
+          
+          listinha.innerHTML += `
+            <div class="conteudo">
+      <div class="conteudoLista">
+        ${dadoAtual.Nome}
+      </div>
+      <div class="conteudoLista" >
+        ${dadoAtual.idEmpresa}
+                </div>
+      <div class="conteudoLista">
+        ${dadoAtual.CEP}
+              </div>
+      <div class="conteudoLista">
+        ${dadoAtual.Cidade}
+                </div>
+      <div class="conteudoLista">
+        ${dadoAtual.Estado}
+        </div>
+      <div class="conteudoLista2">
+        <Button onclick="Editar('${dadoAtual}')">
+          <i class="uil uil-edit-alt"></i>
+        </Button>
+      </div>
+      <div class="conteudoLista2">
+        <Button>
+          <i class="uil uil-trash-alt"></i> 
+        </Button>
+      </div>
+    </div>
+      `
+        
+        }
+      }
+    });
+  } else {
+    throw ('Houve um erro na API!');
+  }
+}).catch(function (resposta) {
+  console.error(resposta);
+});
+}
+
+
+listar();
 </script>
 
 
@@ -297,4 +394,5 @@
       }
   };
 
+  
   </script>

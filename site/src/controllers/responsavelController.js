@@ -69,6 +69,7 @@ function cadastrar(req, res) {
     var cargo = req.body.tipoServer;
     var cpf = req.body.cpfServer;
      var empresa = req.body.cnpjServer;
+     var matriz = req.body.fkMatriz;
     console.log("passou pela Controller" + nome + email + senha + cargo + cpf + empresa )
 
     // Faça as validações dos valores
@@ -81,7 +82,7 @@ function cadastrar(req, res) {
     } else {
         
         // Passe os valores como parâmetro e vá para o arquivo responsavelModel.js
-        responsavelModel.cadastrar(nome, email, cpf, senha, cargo, empresa)
+        responsavelModel.cadastrar(nome, email, cpf, senha, cargo, empresa, matriz)
             .then(
                 function (resultado) {
                     res.json(resultado);

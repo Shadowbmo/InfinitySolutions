@@ -13,8 +13,9 @@
   justify-content: center;
   align-items: center;
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
-
 :root {
   --BrancoMelvs: #eff0e8d5;
   --VerdeClaro: #11C76F;

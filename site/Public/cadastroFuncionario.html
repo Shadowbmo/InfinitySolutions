@@ -9,8 +9,8 @@
       <!-- Linkando O  CSS da tela de dashboard (grafico)-->      
       <!-- linkando os icones-->
       <link rel=" stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="./css/modal.css">
-    <link rel="stylesheet" href="./css/cadastroFuncionario.css">
+  <link rel="stylesheet" href="./css/modal.css">
+  <link rel="stylesheet" href="./css/cadastroFuncionario.css">
 
   <!-- linkando os icones-->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -31,15 +31,43 @@
   <div class="headerTopzaum" id="headerTopzinho">
   </div>
   <!--Graficos-->
-  <div class="listaConteudo">
-    <div class="caixaConteudo">
 
-      <div class="cadastrar">
-        <button id="modal-btn"><i class="uil uil-user-plus"></i> Cadastrar Funcionario</button>
+  <div class="cadastrar">
+    <button onclick="openModal()"><i class="uil uil-user-plus"></i> Cadastrar Funcionario</button>
+  </div>
+  <div class="lista">
+    <div class="titulos">
+      <div class="titulo">
+        Nome
       </div>
-      <ul id="listaEmpresa">
-      </ul>
+      <div class="titulo">
+        Empresa
+      </div>
+      <div class="titulo">
+        Email
+      </div>
+      <div class="titulo">
+        CPF
+      </div>
+      <div class="titulo">
+        Cargo
+      </div>
+      <div class="titulo2">
+        Editar
+      </div>
+      <div class="titulo2">
+        Excluir
+      </div>
     </div>
+  </div>
+
+  <div class="lista">
+    <div class="lista2" id="listinha">
+
+
+
+    </div>
+
   </div>
 
 
@@ -49,6 +77,54 @@
 
 
   <!--Menu-->
+
+  <div id="modalEditar" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-direita">
+          <h2>Atualizar Funcionario</h2>
+        </div>
+        <div>
+          <img src="./assets/img/Monitoring_Solution.svg" width="50px" height="50px" alt="">
+        </div>
+        <div class="modal-esquerda">
+          <span class="close" onclick="closeModalE()">&times;</span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="containerInput">
+          <input class="input margin" placeholder="Nome" id="input_nome_editar">
+        </div>
+        <div class="containerInput">
+          <input class="input margin" placeholder="Email" id="input_email_editar">
+
+        </div>
+        <div class="containerInput">
+          <input class="input margin" type="password" placeholder="Senha" id="input_senha_editar">
+        </div>
+        <div class="containerInput">
+          <input class="input margin" placeholder="CPF" id="input_cpf_editar" maxlength="14" onkeyup="mascaraCPF()">
+        </div>
+        <div class="containerInput">
+          <input class="input margin" placeholder="CNPJ" id="input_cnpj_editar" maxlength="18" onkeyup="mascaraCNPJ()"
+            maxlength="14">
+        </div>
+        <div class="containerInput">
+          <select class="input margin" id="input_tipo_editar">
+            <option value="">Permissão</option>
+            <option value="2">Gerente</option>
+            <option value="3">Analista</option>
+          </select>
+        </div><!-- Container input-->
+        <div class="botao">
+          <button onclick="cadastrarUsuario()">Adicionar Funcionario</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <h3>Inifinity Solutions</h3>
+      </div>
+    </div>
+  </div>
 
   <div id="my-modal" class="modal">
     <div class="modal-content">
@@ -60,7 +136,7 @@
           <img src="./assets/img/Monitoring_Solution.svg" width="50px" height="50px" alt="">
         </div>
         <div class="modal-esquerda">
-          <span class="close">&times;</span>
+          <span class="close" onclick="closeModal()">&times;</span>
         </div>
       </div>
       <div class="modal-body">
@@ -75,11 +151,12 @@
           <input class="input margin" type="password" placeholder="Senha" id="input_senha_funcionario">
         </div>
         <div class="containerInput">
-          <input class="input margin" placeholder="CPF" id="input_cpf_funcionario" maxlength="14" onkeyup="mascaraCPF()">
+          <input class="input margin" placeholder="CPF" id="input_cpf_funcionario" maxlength="14"
+            onkeyup="mascaraCPF()">
         </div>
         <div class="containerInput">
-          <input class="input margin" placeholder="CNPJ" id="input_cnpj_funcionario" maxlength="18" onkeyup="mascaraCNPJ()"
-            maxlength="14">
+          <input class="input margin" placeholder="CNPJ" id="input_cnpj_funcionario" maxlength="18"
+            onkeyup="mascaraCNPJ()" maxlength="14">
         </div>
         <div class="containerInput">
           <select class="input margin" id="input_tipo_funcionario">
@@ -102,127 +179,196 @@
 </html>
 
 <script>
-
+  let matriz = sessionStorage.ID_USUARIO;
   // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
   function cadastrarUsuario() {
-      var dadosInput = {
-          nomeServer: input_nome_funcionario.value,
-          emailServer: input_email_funcionario.value,
-          tipoServer: input_tipo_funcionario.value,
-          cpfServer: cpfzinho,
-          senhaServer: input_senha_funcionario.value,
-          cnpjServer: cnpjzinho
+    var dadosInput = {
+      nomeServer: input_nome_funcionario.value,
+      emailServer: input_email_funcionario.value,
+      tipoServer: input_tipo_funcionario.value,
+      cpfServer: cpfzinho,
+      senhaServer: input_senha_funcionario.value,
+      cnpjServer: cnpjzinho,
+      fkMatriz: matriz
+    }
+
+    fetch(`/responsavel/cadastrar`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dadosInput)
+    }).then(function (resposta) {
+
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log("DEU CERTOOO")
+        window.location = './cadastroFuncionario.html'
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
       }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
 
-      fetch(`/responsavel/cadastrar`, {
-          method: "post",
-          headers: {
-              "Content-Type": "application/json"
-          },
-          body: JSON.stringify(dadosInput)
-      }).then(function (resposta) {
-
-          console.log("resposta: ", resposta);
-
-          if (resposta.ok) {
-            console.log("DEU CERTOOO")
-          } else if (resposta.status == 404) {
-              window.alert("Deu 404!");
-          } else {
-              throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-          }
-      }).catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-      });
-
-      return false;
+    return false;
 
   }
 
-  // function cadastrarFuncionario() {
+  var cnpj = sessionStorage.ID_USUARIO;
+  let id = cnpj;
+  id = id.replace(/\.|\-|\//g, '');
 
-  //     var dadosInput = {
-  //         cnpj: input_cnpj_funcionario.value,
-  //         cpf: input_cpf_funcionario.value,
-  //     }
+  function listar() {
 
-  //     fetch(`/avisos/cadastrarFuncionario`, {
-  //         method: "post",
-  //         headers: {
-  //             "Content-Type": "application/json"
-  //         },
-  //         body: JSON.stringify(dadosInput)
-  //     }).then(function (resposta) {
+    fetch(`/usuarios/listar/${id}`).then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          throw "Nenhum resultado encontrado!!";
+          listinha.innerHTML = ""
+        }
 
-  //         console.log("resposta: ", resposta);
+        resposta.json().then(function (resposta) {
+          console.log("Dados recebidos: ", JSON.stringify(resposta));
+          listinha.innerHTML = "";
+          for (posicaoAtual = 0; posicaoAtual < resposta.length; posicaoAtual++) {
+            let dadoAtual = resposta[posicaoAtual];
+            listinha.innerHTML += `
+              <div class="conteudo">
+        <div class="conteudoLista">
+          ${dadoAtual.Nome}
+        </div>
+        <div class="conteudoLista" >
+          ${dadoAtual.FkEmpresa}
+                  </div>
+        <div class="conteudoLista">
+          ${dadoAtual.Email}
+                </div>
+        <div class="conteudoLista">
+          ${dadoAtual.idFunc}
+                  </div>
+        <div class="conteudoLista">
+          Analista
+        </div>
+        <div class="conteudoLista2">
+          <Button onclick="Editar('${dadoAtual}')">
+            <i class="uil uil-edit-alt"></i>
+          </Button>
+        </div>
+        <div class="conteudoLista2">
+          <Button>
+            <i class="uil uil-trash-alt"></i> 
+          </Button>
+        </div>
+      </div>
+          
+          `
+          }
+        });
+      } else {
+        throw ('Houve um erro na API!');
+      }
+    }).catch(function (resposta) {
+      console.error(resposta);
+    });
+  }
 
-  //         if (resposta.ok) {
 
-  //         } else if (resposta.status == 404) {
-  //             window.alert("Deu 404!");
-  //         } else {
-  //             throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-  //         }
-  //     }).catch(function (resposta) {
-  //         console.log(`#ERRO: ${resposta}`);
-  //     });
+  listar();
 
-  //     return false;
+  function Editar(dadoAtual) {
+    const modal2 = document.querySelector('#modalEditar');
+    modal2.style.display = 'block';
 
-  // }
+    const inputNome = document.querySelector('#input_nome_editar');
+    const inputEmail = document.querySelector('#input_email_editar');
+    const inputSenha = document.querySelector('#input_senha_editar');
+    const inputCPF = document.querySelector('#input_cpf_editar');
+    const inputCNPJ = document.querySelector('#input_cnpj_editar');
+    const inputTipoFuncionario = document.querySelector('#input_tipo_editar');
 
+    // Preencher os inputs com os valores do objeto dadoAtual
+
+    fetch(`/usuarios/listar/${id}`).then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          throw "Nenhum resultado encontrado!!";
+        }
+
+        resposta.json().then(function (resposta) {
+          console.log("Dados recebidos: ", JSON.stringify(resposta));
+          const funcionarioAtual = resposta[0];
+
+
+        });
+      } else {
+        throw ('Houve um erro na API!');
+      }
+    }).catch(function (resposta) {
+      console.error(resposta);
+    });
+  }
+
+
+function closeModalE(){
+  const modal2 = document.querySelector('#modalEditar');
+    modal2.style.display = 'none';
+}
 
   function atualizarFuncionario() {
-      var id = idUsuario; 
-      fetch(`/avisos/atualizarFuncionario/${id}`).then(function (resposta) {
-          if (resposta.ok) {
-              if (resposta.status == 204) {
-                  throw "Nenhum resultado encontrado!!";
-              }
+    var id = idUsuario;
+    fetch(`/avisos/atualizarFuncionario/${id}`).then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          throw "Nenhum resultado encontrado!!";
+        }
 
-              resposta.json().then(function (resposta) {
-                  console.log("Dados recebidos: ", JSON.stringify(resposta));
+        resposta.json().then(function (resposta) {
+          console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                  for (let i = 0; i < resposta.length; i++) {
-                      var publicacao = resposta[i];
-                      console.log(resposta[i])
- 
-                  }
+          for (let i = 0; i < resposta.length; i++) {
+            var publicacao = resposta[i];
+            console.log(resposta[i])
 
-              });
-          } else {
-              throw ('Houve um erro na API!');
           }
-      }).catch(function (resposta) {
-          console.error(resposta);
-      });
+
+        });
+      } else {
+        throw ('Houve um erro na API!');
+      }
+    }).catch(function (resposta) {
+      console.error(resposta);
+    });
   }
 </script>
 
 <script>
   function mascaraCPF() {
-  let valor = input_cpf_funcionario.value;
-valor = valor.replace(/\D/g, ''); // Remove todos os caracteres não numéricos do valor
-valor = valor.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona um ponto após os primeiros 3 dígitos
-valor = valor.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona um ponto após os próximos 3 dígitos
-valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Adiciona um hífen após os últimos 2 dígitos
+    let valor = input_cpf_funcionario.value;
+    valor = valor.replace(/\D/g, ''); // Remove todos os caracteres não numéricos do valor
+    valor = valor.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona um ponto após os primeiros 3 dígitos
+    valor = valor.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona um ponto após os próximos 3 dígitos
+    valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Adiciona um hífen após os últimos 2 dígitos
 
-input_cpf_funcionario.value = valor;
-cpfzinho = valor;
-}
-let cpfzinho = 0;
-let cnpjzinho = 0;
-function mascaraCNPJ() {
-let valorCNPJ = input_cnpj_funcionario.value;
-valorCNPJ = valorCNPJ.replace(/\D/g, ''); // Remove todos os caracteres não numéricos do valorCNPJ
-valorCNPJ = valorCNPJ.replace(/(\d{2})(\d)/, '$1.$2'); // Adiciona um ponto após os primeiros 2 dígitos
-valorCNPJ = valorCNPJ.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona um ponto após os próximos 3 dígitos
-valorCNPJ = valorCNPJ.replace(/(\d{3})(\d)/, '$1/$2'); // Adiciona uma barra após os próximos 3 dígitos
-valorCNPJ = valorCNPJ.replace(/(\d{4})(\d)/, '$1-$2'); // Adiciona um hífen após os últimos 4 dígitos
+    input_cpf_funcionario.value = valor;
+    cpfzinho = valor;
+  }
+  let cpfzinho = 0;
+  let cnpjzinho = 0;
+  function mascaraCNPJ() {
+    let valorCNPJ = input_cnpj_funcionario.value;
+    valorCNPJ = valorCNPJ.replace(/\D/g, ''); // Remove todos os caracteres não numéricos do valorCNPJ
+    valorCNPJ = valorCNPJ.replace(/(\d{2})(\d)/, '$1.$2'); // Adiciona um ponto após os primeiros 2 dígitos
+    valorCNPJ = valorCNPJ.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona um ponto após os próximos 3 dígitos
+    valorCNPJ = valorCNPJ.replace(/(\d{3})(\d)/, '$1/$2'); // Adiciona uma barra após os próximos 3 dígitos
+    valorCNPJ = valorCNPJ.replace(/(\d{4})(\d)/, '$1-$2'); // Adiciona um hífen após os últimos 4 dígitos
 
-input_cnpj_funcionario.value = valorCNPJ;
-cnpjzinho = valorCNPJ;
-}
+    input_cnpj_funcionario.value = valorCNPJ;
+    cnpjzinho = valorCNPJ;
+  }
 </script>
 
 <script src="./js/headerOficial.js">

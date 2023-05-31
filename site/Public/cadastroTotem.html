@@ -31,15 +31,43 @@
   <div class="headerTopzaum" id="headerTopzinho">
   </div>
   <!--Graficos-->
-  <div class="listaConteudo">
-    <div class="caixaConteudo">
 
-      <div class="cadastrar">
-        <button id="modal-btn"><i class="uil uil-user-plus"></i> Cadastrar Totem</button>
+  <div class="cadastrar">
+    <button id="modal-btn" onclick="openModal()"><i class="uil uil-user-plus"></i> Cadastrar Totem</button>
+  </div>
+  <div class="lista">
+    <div class="titulos">
+      <div class="titulo">
+        Numero de Identificação
       </div>
-      <ul id="listaEmpresa">
-      </ul>
+      <div class="titulo">
+        CNPJ
+      </div>
+      <div class="titulo">
+        Sistema Operacional
+      </div>
+      <div class="titulo">
+        marca
+      </div>
+      <div class="titulo">
+        data de fabricação
+      </div>
+      <div class="titulo2">
+        Editar
+      </div>
+      <div class="titulo2">
+        Excluir
+      </div>
     </div>
+  </div>
+
+  <div class="lista">
+    <div class="lista2" id="listinha">
+
+
+
+    </div>
+
   </div>
 
 
@@ -87,22 +115,6 @@
           <input class="input margin" placeholder="Data de Fabricação" id="inputDataDeFabricacao">
         </div>
 
-        <div class="containerInput">
-          <input class="input margin" placeholder="Capacidade de Memoria Ram" id="inputCapacidadeDeMemoriaRam">
-        </div>
-
-        <div class="containerInput">
-          <input class="input margin" placeholder="Capacidade de Temperatura" id="inputCapacidadeDeTemperatura">
-        </div>
-
-        <div class="containerInput">
-          <input class="input margin" placeholder="Capacidade de Disco" id="inputCapacidadeDeDisco">
-        </div>
-
-        <div class="containerInput">
-          <input class="input margin" placeholder="Capacidade de CPU" id="inputCapacidadeDeCPU">
-        </div>
-
         <div class="botao">
           <button onclick="cadastrarUsuario()">Adicionar Totem</button>
         </div>
@@ -117,6 +129,9 @@
 </html>
 
 <script>
+  var cnpj = sessionStorage.ID_USUARIO;
+  let id = cnpj;
+  id = id.replace(/\.|\-|\//g, '');
 
   // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
   function cadastrarUsuario() {
@@ -125,15 +140,12 @@
       dataDeFabricacaoServer: inputDataDeFabricacao.value,
       fkEmpresaServer: inputFkEmpresa.value,
       sistemaOperacionalServer: inputSistemaOperacional.value,
-      capacidadeDeCPUServer: inputCapacidadeDeCPU.value,
-      capacidadeDeTemperaturaServer: inputCapacidadeDeTemperatura.value,
-      capacidadeDeDiscoServer: inputCapacidadeDeDisco.value,
-      capacidadeDeMemoriaRamServer: inputCapacidadeDeMemoriaRam.value,
-      marcaServer : inputMarca.value,
+      marcaServer: inputMarca.value,
+      fkMatriz: id
     }
 
 
-    console.log("ainda no dados input"+ dadosInput)
+    console.log("ainda no dados input" + dadosInput)
     fetch(`/totem/cadastrar`, {
       method: "post",
       headers: {
@@ -146,6 +158,48 @@
 
       if (resposta.ok) {
         console.log("DEU CERTOOO")
+        cadastrarLimite()
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+      }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+
+  }
+  var primeiro = 1;
+  function cadastrarLimite() {
+    var dadosInput = {
+      numeroDeIdentificacaoServer: inputNumeroDeIdentificacao.value,
+      fkEmpresaServer: inputFkEmpresa.value,
+      primeiro: primeiro
+    }
+    console.log("ainda no dados input" + dadosInput)
+    fetch(`/totem/cadastrarLimite`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dadosInput)
+    }).then(function (resposta) {
+
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log("DEU CERTOOO")
+        primeiro++;
+        if (primeiro == 3) {
+          console.log("MEOOOOOOOOOOOOOOOOOOOOO" + primeiro)
+          window.location = "./cadastroTotem.html"
+          primeiro == 1;
+        }
+        if (primeiro == 2) {
+          cadastrarLimite();
+        }
       } else if (resposta.status == 404) {
         window.alert("Deu 404!");
       } else {
@@ -159,56 +213,83 @@
 
   }
 
-  // function cadastrarFuncionario() {
-
-  //     var dadosInput = {
-  //         cnpj: input_cnpj_funcionario.value,
-  //         cpf: input_cpf_funcionario.value,
-  //     }
-
-  //     fetch(`/avisos/cadastrarFuncionario`, {
-  //         method: "post",
-  //         headers: {
-  //             "Content-Type": "application/json"
-  //         },
-  //         body: JSON.stringify(dadosInput)
-  //     }).then(function (resposta) {
-
-  //         console.log("resposta: ", resposta);
-
-  //         if (resposta.ok) {
-
-  //         } else if (resposta.status == 404) {
-  //             window.alert("Deu 404!");
-  //         } else {
-  //             throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-  //         }
-  //     }).catch(function (resposta) {
-  //         console.log(`#ERRO: ${resposta}`);
-  //     });
-
-  //     return false;
-
-  // }
 
 
-  function atualizarFuncionario() {
-    var id = idUsuario;
-    fetch(`/avisos/atualizarFuncionario/${id}`).then(function (resposta) {
+
+
+  function Deletar(fkTotem, fkEmpresaA) {
+    let fkEmpresa = fkEmpresaA;
+    fkEmpresa = fkEmpresa.replace(/\.|\-|\//g, '');
+    fetch(`/totem/deletar/${fkTotem}/${fkEmpresa}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+      })
+    }).then(function (resposta) {
+
+      if (resposta.ok) {
+        window.location = './cadastroTotem.html'
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+      }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+    closeModal();
+
+
+  }
+
+
+  function listar() {
+
+    fetch(`/totem/listar/${id}`).then(function (resposta) {
       if (resposta.ok) {
         if (resposta.status == 204) {
           throw "Nenhum resultado encontrado!!";
+          listinha.innerHTML = ""
         }
 
         resposta.json().then(function (resposta) {
           console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-          for (let i = 0; i < resposta.length; i++) {
-            var publicacao = resposta[i];
-            console.log(resposta[i])
-
+          listinha.innerHTML = "";
+          for (posicaoAtual = 0; posicaoAtual < resposta.length; posicaoAtual++) {
+            let dadoAtual = resposta[posicaoAtual];
+            listinha.innerHTML += `
+          <div class="conteudo">
+    <div class="conteudoLista">
+      ${dadoAtual.NumIdenti}
+    </div>
+    <div class="conteudoLista" >
+      ${dadoAtual.fkEmpresa}
+              </div>
+    <div class="conteudoLista">
+      ${dadoAtual.so}
+            </div>
+    <div class="conteudoLista">
+      ${dadoAtual.Marca}
+              </div>
+    <div class="conteudoLista">
+      ${dadoAtual.data}
+    </div>
+    <div class="conteudoLista2">
+      <Button onclick="Editar('${dadoAtual}')">
+        <i class="uil uil-edit-alt"></i>
+      </Button>
+    </div>
+    <div class="conteudoLista2">
+      <Button onclick="Deletar('${dadoAtual.NumIdenti}', '${dadoAtual.fkEmpresa}')">
+        <i class="uil uil-trash-alt"></i> 
+      </Button>
+    </div>
+  </div>
+      
+      `
           }
-
         });
       } else {
         throw ('Houve um erro na API!');
@@ -217,6 +298,9 @@
       console.error(resposta);
     });
   }
+
+
+  listar();
 </script>
 
 <script>

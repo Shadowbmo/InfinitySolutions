@@ -22,22 +22,22 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS mydb DEFAULT CHARACTER SET utf8 ;
+USE mydb ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Empresa`
+-- Table Empresa
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Empresa` ;
+DROP TABLE IF EXISTS mydb.Empresa ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Empresa` (
-  `idEmpresa` INT NOT NULL,
-  `Nome` VARCHAR(45) NULL,
-  `CNPJ` INT NULL,
-  `Senha` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `numeroTel` INT NULL,
-  `CEP` INT NULL,
+CREATE TABLE IF NOT EXISTS mydb.Empresa (
+  idEmpresa INT NOT NULL,
+  Nome VARCHAR(45) NULL,
+  CNPJ INT NULL,
+  Senha VARCHAR(45) NULL,
+  email VARCHAR(45) NULL,
+  numeroTel INT NULL,
+  CEP` INT NULL,
   `Lougradouro` VARCHAR(45) NULL,
   `Numero` INT NULL,
   `Estado` VARCHAR(45) NULL,
@@ -200,3 +200,20 @@ EXEC sys.sp_addrolemember @rolename = N'db_datawriter',
 
 EXEC sys.sp_addrolemember @rolename = N'db_datareader',
 @membername = N'usuarioParaAPIWebDataViz_datawriter_datareader';
+
+
+CREATE TABLE Reinicializacoes (
+  idReinicializacoes INT NOT NULL auto_increment,
+  fkLimites  varchar(45) NOT NULL,
+  fkTotem VARCHAR(45) NOT NULL,
+  fkEmpresa varchar(18) NOT NULL,
+  Data DATE NULL,
+  MonitoramentoDeRecursos_idCapacidade INT NOT NULL,
+  MonitoramentoDeRecursos_fkEmpresa varchar(18) NOT NULL,
+  MonitoramentoDeRecursos_FkNumIdenti VARCHAR(45) NOT NULL,
+  PRIMARY KEY (idReinicializacoes, fkLimites, fkTotem, fkEmpresa),
+    FOREIGN KEY (fkLimites , fkTotem , fkEmpresa)
+    REFERENCES Limites (idLimites , fkTotem , fkEmpresa),
+    FOREIGN KEY (MonitoramentoDeRecursos_idCapacidade , MonitoramentoDeRecursos_fkEmpresa , MonitoramentoDeRecursos_FkNumIdenti)
+    REFERENCES MonitoramentoDeRecursos (idCapacidade , fkEmpresa , fkTotem)
+);

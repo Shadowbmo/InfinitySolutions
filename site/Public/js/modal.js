@@ -3,8 +3,10 @@
  const modalBtn = document.querySelector('#modal-btn');
  const closeBtn = document.querySelector('.close');
 
+  // Get DOM Elements
+  const modal2 = document.querySelector('#my-modal2');
+
  // Events
- modalBtn.addEventListener('click', openModal);
  closeBtn.addEventListener('click', closeModal);
  window.addEventListener('click', outsideClick);
 
@@ -17,6 +19,17 @@
  function closeModal() {
      modal.style.display = 'none';
  }
+
+ function openModal2() {
+    modal2.style.display = 'block';
+}
+
+// Close
+function closeModal2() {
+    modal2.style.display = 'none';
+}
+
+
 
  // Close If Outside Click
  function outsideClick(e) {
