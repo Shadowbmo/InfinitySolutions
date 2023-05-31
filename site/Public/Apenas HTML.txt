@@ -1,1 +1,132 @@
-Apenas HTML
+
+
+CREATE TABLE Empresa (
+  idEmpresa varchar(18) NOT NULL,
+  CNPJ CHAR(18) NULL,
+  Nome VARCHAR(45) NULL,
+  Senha VARCHAR(300) NULL,
+  email VARCHAR(45) NULL,
+  numeroTel VARCHAR(20) NULL,
+  CEP CHAR(9) NULL,
+  Lougradouro VARCHAR(45) NULL,
+  Numero INT NULL,
+  Estado VARCHAR(45) NULL,
+  Cidade VARCHAR(45) NULL,
+  Filial VARCHAR(18) NOT NULL,
+  PRIMARY KEY (idEmpresa),
+    FOREIGN KEY (Filial)
+    REFERENCES Empresa (idEmpresa)
+    );
+
+
+-- -----------------------------------------------------
+-- Table Funcionário
+-- -----------------------------------------------------
+
+CREATE TABLE Funcionário (
+  Nome VARCHAR(45) NULL,
+  Cargo VARCHAR(45) NULL,
+  Email VARCHAR(45) NULL,
+  Senha VARCHAR(45) NULL,
+  idFunc varchar(14) NOT NULL,
+  FkEmpresa varchar(18) NOT NULL,
+  CPF CHAR(14) NULL,
+  PRIMARY KEY (idFunc, FkEmpresa),
+   FOREIGN KEY (FkEmpresa)   REFERENCES Empresa (idEmpresa)
+    );
+
+
+-- -----------------------------------------------------
+-- Table Totem
+-- -----------------------------------------------------
+
+
+CREATE TABLE Totem (
+  NumIdenti VARCHAR(10) NOT NULL,
+  fkEmpresa varchar(18) NOT NULL,
+  DataFabrica DATE NULL,
+  Marca VARCHAR(45) NULL,
+  SO VARCHAR(45) NULL,
+  CapacidadeDeMemoriaRam DOUBLE NULL,
+  CapacidadeDeCPU DOUBLE NULL,
+  CapacidadeDeTemperatura DOUBLE NULL,
+  CapacidadeDeDisco DOUBLE NULL,
+  statusDeFuncionamento VARCHAR(45) NULL,
+  Chamados INT NULL,
+  PRIMARY KEY (NumIdenti, fkEmpresa),
+  FOREIGN KEY (fkEmpresa)
+    REFERENCES Empresa (idEmpresa)
+    );
+
+-- -----------------------------------------------------
+-- Table MonitoramentoDeRecursos
+-- -----------------------------------------------------
+
+CREATE TABLE MonitoramentoDeRecursos (
+  idCapacidade INT NOT NULL,
+  Totem_fkEmpresa varchar(18) NOT NULL,
+  Totem_NumIdenti VARCHAR(10) NOT NULL,
+  UsoDeMemoriaRam DOUBLE NULL,
+  Disco DOUBLE NULL,
+  UsoDeCPU DOUBLE NULL,
+  PRIMARY KEY (idCapacidade, Totem_fkEmpresa, Totem_NumIdenti),
+  FOREIGN KEY (Totem_NumIdenti , Totem_fkEmpresa)
+    REFERENCES Totem (NumIdenti , fkEmpresa)
+    );
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE realizar_compra(
+    IN fkProdutoAtual INT,
+    IN p_produto_id INT,
+    IN p_quantidade INT,
+    IN p_valor_unitario DECIMAL(10,2),
+    IN p_funcionario_id INT
+)
+AS $$
+DECLARE
+    v_nota_fiscal_id INT;
+    v_caixa_id INT;
+    v_pagamento_id INT;
+BEGIN
+    -- Inserir venda
+    INSERT INTO Venda (fkProduto, data) VALUES (fkProdutoAtual, CURRENT_DATE);
+
+    -- Inserir produtos vendidos
+    INSERT INTO ProdutosVendidos (fkProduto, produto_id, quantidade, valor_unitario)
+    VALUES (fkProdutoAtual, p_produto_id, p_quantidade, p_valor_unitario);
+
+    -- Gerar nota fiscal
+    INSERT INTO NotaFiscal (data, fkProduto) VALUES (CURRENT_DATE, fkProdutoAtual)
+    RETURNING nota_fiscal_id INTO v_nota_fiscal_id;
+
+    -- Registrar pagamento
+    INSERT INTO Pagamentos (fkProduto, valor_pago) VALUES (fkProdutoAtual, p_quantidade * p_valor_unitario)
+    RETURNING pagamento_id INTO v_pagamento_id;
+
+    -- Registrar movimentação no caixa, incluindo o funcionário responsável
+    INSERT INTO Caixa (nota_fiscal_id, pagamento_id, valor_total, funcionario_id)
+    VALUES (v_nota_fiscal_id, v_pagamento_id, p_quantidade * p_valor_unitario, p_funcionario_id)
+    RETURNING caixa_id INTO v_caixa_id;
+
+    -- Atualizar estoque
+    UPDATE Produtos
+    SET quantidade = quantidade - p_quantidade
+    WHERE produto_id = p_produto_id;
+
+    -- Commit da transação
+    COMMIT;
+    
+    -- Imprimir mensagem de sucesso
+    RAISE NOTICE 'Compra realizada com sucesso!';
+
+EXCEPTION
+    WHEN OTHERS THEN
+        -- Rollback da transação em caso de erro
+        ROLLBACK;
+        -- Imprimir mensagem de erro
+        RAISE EXCEPTION 'Erro ao realizar a compra: %', SQLERRM;
+END;
+$$ LANGUAGE plpgsql;

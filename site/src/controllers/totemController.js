@@ -8,7 +8,14 @@ function testar(req, res) {
 }
 
 function listar(req, res) {
-    totemModel.listar()
+    var id = req.params.id;
+    id = id.substr(0, 2) + '.' +
+    id.substr(2, 3) + '.' +
+    id.substr(5, 3) + '/' +
+    id.substr(8, 4) + '-' +
+    id.substr(12, 2);
+
+    totemModel.listar(id)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -24,6 +31,55 @@ function listar(req, res) {
         );
 }
 
+function listar2(req, res) {
+    var id = req.params.id;
+    id = id.substr(0, 2) + '.' +
+    id.substr(2, 3) + '.' +
+    id.substr(5, 3) + '/' +
+    id.substr(8, 4) + '-' +
+    id.substr(12, 2);
+
+    totemModel.listar2(id)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta do totem! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+function deletar(req, res) {
+    var id = req.params.fkEmpresa;
+    let fkTotem = req.params.fkTotem;
+    id = id.substr(0, 2) + '.' +
+    id.substr(2, 3) + '.' +
+    id.substr(5, 3) + '/' +
+    id.substr(8, 4) + '-' +
+    id.substr(12, 2);
+
+    totemModel.deletar(id, fkTotem)
+    .then(
+        function (resultado) {
+            res.json(resultado);
+        }
+    )
+    .catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
+
+
 
 function cadastrar(req, res) {
     console.log("to no controller")
@@ -32,38 +88,58 @@ function cadastrar(req, res) {
     var dataFabricacao = req.body.dataDeFabricacaoServer;
     var numeroDeIndentificacao = req.body.numeroDeIdentificacaoServer;
     var marca = req.body.marcaServer;
-    var sistemaOperacional = req.body.sistemaOperacionalServer;
-    var capacidadeDeMemoriaRam = req.body.capacidadeDeMemoriaRamServer;
-    var capacidadeDeCPU = req.body.capacidadeDeCPUServer;
-    var capacidadeDeTemperatura = req.body.capacidadeDeTemperaturaServer;
-    var capacidadeDeDisco = req.body.capacidadeDeDiscoServer;
     var fkEmpresa = req.body.fkEmpresaServer;
+    var fkMatriz = req.body.fkMatriz;
+    var sistemaOperacional = req.body.sistemaOperacionalServer;
 
-    console.log(dataFabricacao, numeroDeIndentificacao, marca, sistemaOperacional, capacidadeDeMemoriaRam, capacidadeDeCPU, capacidadeDeTemperatura, capacidadeDeDisco, fkEmpresa);
+    fkMatriz = fkMatriz.substr(0, 2) + '.' +
+    fkMatriz.substr(2, 3) + '.' +
+    fkMatriz.substr(5, 3) + '/' +
+    fkMatriz.substr(8, 4) + '-' +
+    fkMatriz.substr(12, 2);
+
+    console.log(dataFabricacao, numeroDeIndentificacao, marca, sistemaOperacional, fkEmpresa, fkMatriz);
 
     // validações
-    if (marca == undefined) {
-        res.status(400).send("A marca está undefined!");
-    } else if (sistemaOperacional == undefined) {
-        res.status(400).send("O Sistema Operacional está undefined!");
-    } else if (capacidadeDeCPU == undefined) {
-        res.status(400).send("A capacidade de CPU está undefined!");
-    } else if (dataFabricacao == undefined) {
-        res.status(400).send("A data de fabricação está undefined!");
-    } else if (numeroDeIndentificacao == undefined) {
-        res.status(400).send("O número de identificação está undefined!");
-    } else if (capacidadeDeMemoriaRam == undefined) {
-        res.status(400).send("A capacidade de memória RAM está undefined!");
-    } else if (capacidadeDeTemperatura == undefined) {
-        res.status(400).send("A capacidade de temperatura está undefined!");
-    } else if (capacidadeDeDisco == undefined) {
-        res.status(400).send("A capacidade de disco está undefined!");
-    } else if (fkEmpresa == undefined) {
+    if (fkEmpresa == undefined) {
         res.status(400).send("A chave estrangeira da empresa está undefined!");
     } else {
 
         // ATENÇÂO NA HORA DE PASSAR O PARAMETRO
-        totemModel.cadastrar(numeroDeIndentificacao, sistemaOperacional, dataFabricacao, marca, capacidadeDeMemoriaRam, capacidadeDeDisco, capacidadeDeCPU, capacidadeDeTemperatura, fkEmpresa)
+        totemModel.cadastrar(dataFabricacao, numeroDeIndentificacao, marca, sistemaOperacional, fkEmpresa, fkMatriz)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro de seu totem! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
+function cadastrarLimite(req, res) {
+    console.log("to no controller")
+
+    // Variaveis que são pegar do HTML e são passadas para o banco
+    var numeroDeIndentificacao = req.body.numeroDeIdentificacaoServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
+    var primeiro = req.body.primeiro;
+
+    // validações
+    if (fkEmpresa == undefined) {
+        res.status(400).send("A chave estrangeira da empresa está undefined!");
+    } else {
+
+        // ATENÇÂO NA HORA DE PASSAR O PARAMETRO
+        totemModel.cadastrarLimite(numeroDeIndentificacao, fkEmpresa, primeiro)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -84,5 +160,7 @@ function cadastrar(req, res) {
 module.exports = {
     cadastrar,
     listar,
-    testar
+    testar,
+    cadastrarLimite,
+    deletar
 }

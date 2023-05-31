@@ -52,7 +52,7 @@
         <div class="containerLadoDireito">
           <div class="card">
             <span class="titulo">Totem que mais deu problemas nos últimos 4 meses</span>
-            <span class="subtitulo">TOT003</span>
+            <span class="subtitulo" id="totemQueMaisDeuProblemaNosUltimos4Meses">T1</span>
           </div>
         </div>
     
@@ -61,12 +61,12 @@
       </div>
       <div class="containerParteDeBaixo">
         <div class="card">
-          <span class="titulo">Totem que deu mais problema no mês</span>
-          <span class="subtitulo">TOT003</span>
+          <span class="titulo">Totem que deu mais problema neste mês</span>
+          <span class="subtitulo" id="totemQueMaisDeuProblemaNoMes"></span>
         </div>
         <div class="card">
           <span class="titulo">Quantidade de vezes que o suporte técnico foi a loja no mês</span>
-          <span class="subtitulo2">0</span>
+          <span class="subtitulo2" id="vezesQueOSuporteFoiALoja">0</span>
         </div>
       </div>
     </div>
@@ -78,48 +78,17 @@
 
 
 <script>
+  let idFilial = sessionStorage.FILIAL;
+  let numeroDeIdentificacao = sessionStorage.NUMERODEINDENTIFICACAO;
+
+  idFilial = idFilial.replace(/\.|\-|\//g, '');
+  let proximaAtualizacao;
   const ctx = document.getElementById('myChart');
-let dadosTotem1 = [];
-var dadosTotem2= [];
-var dadosTotem3 = [];
-
-
-for (var i = 0; i < 31; i++) {
-  dadosTotem1.push(Math.floor(Math.random() * 11));
-  dadosTotem2.push(Math.floor(Math.random() * (25 - 12 + 1) + 12));
-  dadosTotem3.push(Math.floor(Math.random() * 11) + 20);
-}
-
-
-  new Chart(ctx, {
+  chart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'],
-      datasets: [{
-        label: 'TOT001',
-        data: dadosTotem1,
-        borderColor: 'blue' // Mudança da cor da label TOT001 para vermelho
-        ,backgroundColor:'blue'
-      }, {
-        label: 'TOT002',
-        data: dadosTotem2,
-        borderWidth: 1,
-        borderColor: 'purple' // Mudança da cor da label TOT001 para vermelho
-        ,backgroundColor: 'purple'
-      }, {
-        label: 'TOT003',
-        data:dadosTotem3,
-        borderWidth: 1,
-        borderColor: 'orange' // Mudança da cor da label TOT001 para vermelho
-        ,backgroundColor:'orange'
-      }, {
-        label: 'TOT004',
-        data: [15, 19, 5, 10, 3, 7, 15, 19, 5, 5, 8, 9, 15, 19, 8, 9, 10, 14, 15, 19, 13, 15, 12, 13, 15, 19, 13, 15, 12, 13],
-        borderWidth: 1,
-        borderColor: 'red' // Mudança da cor da label TOT001 para vermelho
-        , backgroundColor: 'red'
-
-      }]
+      datasets: []
     },
     options: {
       scales: {
@@ -133,21 +102,229 @@ for (var i = 0; i < 31; i++) {
 
 
 
+function adicionarDataset(label, data, color) {
+    chart.data.datasets.push({
+      label: label,
+      data: data,
+      borderColor: color,
+      backgroundColor: color
+    });
+  }
+
+  let jsonAntigo = 0;
+  function limparDadosGrafico() {
+    chart.data.datasets.forEach(dataset => {
+      dataset.data = []; // Limpar os dados do dataset
+      // Mantenha a cor de fundo original para evitar repetição
+    });
+  }
+  let totemComProblema = ''; // Variável global para armazenar o totem com mais problemas
+
+
+  let quantidadeDeReinicializacoesHoje = 0 ;
+  function atualizarGraficoReinicializacoes(resposta, idFilial) {
+  limparDadosGrafico(); // Limpar completamente os dados do gráfico antes de adicionar os novos dados
+
+  const diasMes = 31; // Supondo que estamos considerando um mês com 31 dias
+
+  // Criar um objeto para armazenar os dados por fkTotem
+  const dadosPorTotem = {};
+
+  // Inicializar o objeto com arrays vazios para cada fkTotem
+  for (posicaoAtual = 0; posicaoAtual < resposta.length; posicaoAtual++) {
+    fkTotem = resposta[posicaoAtual].fkTotem;
+    dadosPorTotem[fkTotem] = {};
+  }
+
+  // Adicionar os dados existentes à estrutura de dados por fkTotem
+  for (posicaoAtual = 0; posicaoAtual < resposta.length; posicaoAtual++) {
+    const dataHora = new Date(resposta[posicaoAtual].Data);
+    dataHora.setUTCHours(0, 0, 0, 0); // Definir a hora como 0 em UTC
+    const qtdReinicializacoes = resposta[posicaoAtual].Total;
+    fkTotem = resposta[posicaoAtual].fkTotem;
+    const dia = dataHora.getUTCDate(); // Obter o dia em UTC
+    if (dadosPorTotem[fkTotem][dia] === undefined) {
+      dadosPorTotem[fkTotem][dia] = qtdReinicializacoes;
+    } else {
+      dadosPorTotem[fkTotem][dia] += qtdReinicializacoes;
+    }
+  }
+
+  // Criar arrays de dados por dia para cada fkTotem
+  const dadosTotemPorDia = {};
+  for (fkTotem in dadosPorTotem) {
+    dadosTotemPorDia[fkTotem] = [];
+    for (dia = 1; dia <= diasMes; dia++) {
+      const qtdReinicializacoes = dadosPorTotem[fkTotem][dia] || 0;
+      dadosTotemPorDia[fkTotem].push(qtdReinicializacoes);
+    }
+  }
+  let maxProblemas = 0;
+  for (fkTotem in dadosTotemPorDia) {
+    const dadosTotem = dadosTotemPorDia[fkTotem];
+    const totalProblemas = dadosTotem.reduce((total, valor) => total + valor, 0);
+    if (totalProblemas > maxProblemas) {
+      maxProblemas = totalProblemas;
+      totemComProblema = fkTotem;
+      totemQueMaisDeuProblemaNoMes.innerHTML = `${fkTotem}` 
+       }
+  }
+
+  // Atualize as labels do gráfico
+  const labels = Array.from({ length: diasMes }, (_, i) => (i + 1).toString().padStart(2, '0'));
+  chart.data.labels = labels;
+
+  // Atualize o dataset correspondente ao fkTotem ou adicione um novo dataset
+  for (fkTotem in dadosTotemPorDia) {
+    const dadosTotem = dadosTotemPorDia[fkTotem];
+
+    const datasetIndex = chart.data.datasets.findIndex(dataset => dataset.label === fkTotem);
+    if (datasetIndex !== -1) {
+      chart.data.datasets[datasetIndex].data = dadosTotem;
+    } else {
+      const randomColor = getRandomColor();
+      adicionarDataset(fkTotem, dadosTotem, randomColor);
+    }
+  }
+  
+
+  // Atualize o gráfico após adicionar todos os novos dados
+  chart.update();
+  proximaAtualizacao = setTimeout(() => obterDadosGraficoReinicializacao(idFilial), 2000);
+}
+
+console.log("O TOTEM MAIS PROBLEMATICO "+ totemComProblema)
+function obterDadosGraficoReinicializacao(idFilial) {
+    fetch(`/medidas/ultimas/${idFilial}`, { cache: 'no-store' })
+      .then(function (response) {
+        if (response.ok) {
+          if (response.status === 204) {
+            // Nenhum conteúdo encontrado
+            console.error('Nenhum dado encontrado');
+            const dadosZerados = [
+              { fkTotem: 'T1', Data: new Date().toISOString(), Total: 0 }
+            ];
+            plotarGraficoReinicializacao(dadosZerados, idFilial);
+          } else {
+            response.json()
+              .then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
+                console.log(resposta);
+                plotarGraficoReinicializacao(resposta, idFilial);
+              })
+              .catch(function (error) {
+                console.error('Erro ao analisar a resposta JSON:', error);
+              });
+          }
+        } else {
+          console.error('Erro na resposta da API:', response.status);
+        }
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
+
+  window.onload = obterDadosGraficos();
+
+  function obterDadosGraficos() {
+    obterDadosGraficoReinicializacao(idFilial);
+  }
+
+  function plotarGraficoReinicializacao(resposta, idFilial) {
+
+console.log('iniciando plotagem do gráfico...');
+
+console.log('----------------------------------------------')
+console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+console.log(resposta)
+
+console.log('----------------------------------------------');
+console.log('O gráfico será plotado com os respectivos valores:')
+console.log('----------------------------------------------');
+
+
+setTimeout(() => atualizarGraficoReinicializacoes(resposta, idFilial), 2000);
+}
+  // Função para gerar uma cor aleatória
+  function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  function converterTexto(texto) {
+    // Dividir o texto em dias, horas, minutos e segundos
+    const partes = texto.split(', ');
+
+    // Obter o número de dias
+    const dias = partes[0].split(' ')[0];
+
+    // Obter o número de horas, minutos e segundos
+    const tempo = partes[1].split(':');
+    const horas = parseInt(tempo[0]);
+    const minutos = parseInt(tempo[1]);
+
+    // Criar o novo texto
+    const novoTexto = dias + ' dias ' + horas + ' horas e ' + minutos + ' minutos';
+
+    return novoTexto;
+  }
+  var dadosTotem1 = [];
+  var dadosTotem2 = [];
+  var dadosTotem3 = [];
+
+
 var soma1 = 0;
 var soma2 = 0;
 var soma3 = 0;
+
 
 for (var i = 0; i < 31; i++) {
   soma1 += dadosTotem1[i];
   soma2 += dadosTotem2[i];
   soma3 += dadosTotem3[i];
 }
-
+for (var i = 0; i < 31; i++) {
+  dadosTotem1.push(Math.floor(Math.random() * 11));
+  dadosTotem2.push(Math.floor(Math.random() * (25 - 12 + 1) + 12));
+  dadosTotem3.push(Math.floor(Math.random() * 11) + 20);
+}
 var media1 = soma1 / 30;
 var media2 = soma2 / 30;
 var media3 = soma3 / 30;
 
-console.log(media1)
+function listarOcorrencias() {
+
+fetch(`/medidas/listarocorrencia/${idFilial}`).then(function (resposta) {
+  if (resposta.ok) {
+    if (resposta.status == 204) {
+      throw "Nenhum resultado encontrado!!";
+    }
+    resposta.json().then(function (resposta) {
+      if(resposta[0].TotalRows < 5){
+        vezesQueOSuporteFoiALoja.innerHTML = `${resposta[0].TotalRows}`
+      } else{
+        vezesQueOSuporteFoiALoja.innerHTML = `${resposta[0].TotalRows}`
+        vezesQueOSuporteFoiALoja.style.color = 'red'
+      }
+      console.log("Dados recebidos: ", JSON.stringify(resposta));
+   });
+  } else {
+    throw ('Houve um erro na API!');
+  }
+}).catch(function (resposta) {
+  console.error(resposta);
+});
+}
+
+
+listarOcorrencias();
+
 </script>
 <script src="./js/headerOficial.js">
 </script>
@@ -158,31 +335,25 @@ console.log(media1)
   new Chart(ctxBarra, {
     type: 'bar',
     data: {
-      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril'],
+      labels: [ 'Fevereiro', 'Maio', 'Abril', 'Março'],
       datasets: [{
-        label: 'TOT001',
-        data: [media1, 10, 5, media1],
+        label: 'T1',
+        data: [1,1,5,1],
         borderWidth: 1,
         borderColor: 'blue' // Mudança da cor da label TOT001 para vermelho
         , backgroundColor: 'blue'
       },{
-        label: 'TOT002',
-        data: [media2, 19, 12, media2],
+        label: 'T2',
+        data: [1, 1, 1, 1],
         borderWidth: 1,
         borderColor: 'purple', // Mudança da cor da label TOT001 para vermelho.
         backgroundColor: 'purple'
       },{
-        label: 'TOT003',
-        data: [media3, 34, 34, media3],
+        label: 'T3',
+        data: [1, 1, 1, 1],
         borderWidth: 1,
         backgroundColor: 'orange',
         borderColor: 'orange' 
-      },{
-        label: 'TOT004',
-        data: [12, 34, 5, 5],
-        borderWidth: 1,
-        backgroundColor: 'red',
-        borderColor: 'red'
       }]
     },
     options: {

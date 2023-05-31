@@ -8,7 +8,14 @@ function testar(req, res) {
 }
 
 function listar(req, res) {
-    usuarioModel.listar()
+    var id = req.params.id;
+    id = id.substr(0, 2) + '.' +
+    id.substr(2, 3) + '.' +
+    id.substr(5, 3) + '/' +
+    id.substr(8, 4) + '-' +
+    id.substr(12, 2);
+
+    usuarioModel.listar(id)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -34,6 +41,30 @@ function listarTodasFiliais(req, res) {
 
     console.log("esse é o id da empresa" + id)
     usuarioModel.listarTodasFiliais(id).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function listarTodosTotems(req, res) {
+    var id = req.params.id;
+    id = id.substr(0, 2) + '.' +
+    id.substr(2, 3) + '.' +
+    id.substr(5, 3) + '/' +
+    id.substr(8, 4) + '-' +
+    id.substr(12, 2);
+    
+    console.log("esse é o id da empresa" + id)
+    usuarioModel.listarTodosTotems(id).then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
             } else {
@@ -128,6 +159,7 @@ module.exports = {
     entrar,
     cadastrar,
     listarTodasFiliais,
+    listarTodosTotems,
     listar,
     testar
 }

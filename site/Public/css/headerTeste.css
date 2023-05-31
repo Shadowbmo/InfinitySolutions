@@ -68,8 +68,8 @@ table {
 
 
 :root{
-  --BackgroundLinear: linear-gradient(to bottom, #00ef7e, #006986, #01118a);
-  --botaoHeader:#006986;
+  --BackgroundLinear:#C4CFC4;
+  --botaoHeader:#fff;
   --botaoHeaderHover: #509CBB;
     --brancopuro: #FFF;
     --BrancoMelvs: #F0F2E8;
@@ -85,6 +85,7 @@ table {
     --critico: #ff0000;
     --ok: #11C76F;
     --atencao:  #bbb502;
+
     --adicionar:#006880;
 }
 
@@ -92,6 +93,7 @@ table {
 header {
   z-index: 300;
   position: fixed;
+  border-right: 1px solid black;
   /* fixa o header na tela */
   top: 0;
   height: 100vh;
@@ -133,8 +135,9 @@ header .botaoHeader i{
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-  border: 1px solid black;
-  background-color:var(--botaoHeader) ;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  
   z-index: 200;
 }
 

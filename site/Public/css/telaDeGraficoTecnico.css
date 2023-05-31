@@ -16,7 +16,55 @@
     --texto: #428bca;
 
 }
+.aviso{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: justify;
+    width: 90%;
+    margin-bottom: 0.5rem;
+    margin-left: 3%;
+    font-weight: 300 !important;
+}
+.chamado0 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+}
+.chamado1{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    justify-content: flex-start;
+    
+}
+.chamado2{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid black;
+    justify-content: flex-start;
+}
 
+sumir1,sumir2,sumir0{
+  display: none;
+}
+
+.relatorio{
+    padding: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.relatorio:hover{
+    opacity: 0.5;
+}
 .containerGrafico {
     height: 85vh;
     display: flex;
@@ -78,16 +126,26 @@
     box-shadow: 2px -7px 57px -26px rgba(0, 0, 0, 0.35);
     -webkit-box-shadow: 2px -7px 57px -26px rgba(0, 0, 0, 0.35);
     -moz-box-shadow: 2px -7px 57px -26px rgba(0, 0, 0, 0.35);
-    background-color: #EFF4CD;
+    background-color: #F8FAF1;
     gap: 0.5rem;
 }
 
+.ladinho{
+    display: flex;
+    gap: 1rem;
+}
+.logo{
+    width: 50%;
+}
 .graficoDeLinha {
     width: 100%;
     height: 100%;
     justify-content: center;
     align-items: center;
     display: flex;
+}
+.containerInput textarea{
+    height: 140px;
 }
 
 .grafico {
@@ -100,6 +158,7 @@
 }
 .containerLadoEsquerdo .grafico{
     border:1px solid var(--texto);
+    background-color: #F8FAF1;
 }
 
 .containerParteDeCima .grafico {
@@ -131,9 +190,7 @@
 .containerParteDeBaixo .subtitulo2{
 color: green;   
 }
-.card:hover{
-    opacity: 0.6;
-}
+
 
 #GraficoDeBarraMensal {
     width: 100%;
@@ -159,10 +216,11 @@ color: green;
     height: 70%;
 }
 
+
 .headerTopzaum{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 
@@ -242,3 +300,28 @@ a {
     width: 100%;
   }
   
+  .botaos{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.botao button{
+    cursor: pointer;
+    background-color: #D2D8BB;
+    padding: 15px;
+    border-radius: 20px;
+}
+.reiniciar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: #D2D8BB;
+    border-radius: 20px;
+    cursor: pointer;
+}

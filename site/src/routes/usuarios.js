@@ -11,8 +11,21 @@ router.get("/listar", function (req, res) {
     usuarioController.listar(req, res);
 });
 
+router.get("/listar/:id", function (req, res) {
+    usuarioController.listar(req, res);
+});
+
+
+router.get("/listarPorId/:id", function (req, res) {
+    usuarioController.listar(req, res);
+});
+
 router.get("/listarTodasFiliais/:id", function (req, res) {
     usuarioController.listarTodasFiliais(req, res);
+});
+
+router.get("/listarTodosTotems/:id", function (req, res) {
+    usuarioController.listarTodosTotems(req, res);
 });
 
 //Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js

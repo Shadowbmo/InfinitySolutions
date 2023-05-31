@@ -126,13 +126,14 @@
 .subtitulo{
     color: #3D4856;
 }
+.red{
+    color: red !important; 
+}
 
 .containerParteDeBaixo .subtitulo2{
 color: green;   
 }
-.card:hover{
-    opacity: 0.6;
-}
+
 
 #GraficoDeBarraMensal {
     width: 100%;
